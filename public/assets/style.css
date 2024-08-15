@@ -77,7 +77,7 @@ body {
   line-height: normal;
 }
 .min-vh-90{
-  min-height: 90;
+  min-height: 90vh;
 }
 
 .heading {
