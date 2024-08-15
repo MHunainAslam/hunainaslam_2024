@@ -9,7 +9,7 @@ const Banner = (props: Props) => {
       <div className="container-fluid">
         <div className="row align-items-center min-vh-90 justify-content-between">
           <div className="col-xl-4 col-md-7">
-            <p className="mb-0 secondary-heading">Hello i'm</p>
+            <p className="mb-0 secondary-heading">Hello i&apos;m</p>
             <p className="mb-0 primary-heading">Hunain Aslam</p>
             <p className=" heading">Frontend Developer</p>
             <p className="para clr-light">

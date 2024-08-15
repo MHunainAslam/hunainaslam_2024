@@ -73,7 +73,7 @@ const Header: React.FC<Props> = () => {
                 </li>
 
               </ul>
-                <button className="btn primary-btn">LET'S TALK</button>
+                <button className="btn primary-btn">LET&apos;S TALK</button>
             </div>
           </div>
         </div>
