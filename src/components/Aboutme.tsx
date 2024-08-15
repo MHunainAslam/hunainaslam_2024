@@ -1,0 +1,93 @@
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+type Props = {};
+
+const Aboutme = (props: Props) => {
+  return (
+    <>
+      <section className="bg-black py-5">
+        <div className="container py-5">
+          <div className="row justify-content-lg-between justify-content-center align-items-center">
+            <div className="col-lg-7">
+              <div className="aboutme-content">
+                <p className="para clr-light">About Me</p>
+                <p className="fw-normal primary-heading clr-white">
+                  Professional{" "}
+                  <span className="clr-secondary">Problem Solutions</span> For
+                  Digital Products
+                </p>
+                <p className="para clr-light">
+                  My Name is Hunain Aslam Im a Meticulous Front-End Developer I
+                  have developed strong skills in Front-End development using
+                  modern technologies and frameworks. I am a quick learner and
+                  an excellent team player who enjoys collaborating with others
+                  to deliver outstanding results.
+                </p>
+                <ul>
+                  <li className="para-lg">Web Development</li>
+                  {/* <li className="para-lg">App Development</li> */}
+                  <li className="para-lg">Product Design</li>
+                  {/* <li className="para-lg">UI/UX Design</li> */}
+                </ul>
+                <div className="card main-card">
+                  <div className="card-body p-4">
+                    <div className="row">
+                      <div className="col-md-6 d-flex align-items-center">
+                        <span className="btn primary-btn-rounded">
+                          <i
+                            className="fa fa-envelope-o"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                        <div className="ms-3">
+                          <p className="para-sm mb-0 clr-light">Email Us</p>
+                          <Link
+                            href={"mailto:hunainaslam.ha@gmail.com"}
+                            className="para text-decoration-none mb-0 clr-white"
+                          >
+                            hunainaslam.ha@gmail.com
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="col-md-6 d-flex align-items-center">
+                        <span className="btn primary-btn-rounded">
+                          <i className="fa fa-whatsapp" aria-hidden="true"></i>
+                        </span>
+                        <div className="ms-3">
+                          <p className="para-sm mb-0 clr-light">Whatsapp</p>
+                          <Link
+                            href={"mailto:+923352653956"}
+                            className="para text-decoration-none mb-0 clr-white"
+                          >
+                            +92 335 2653956
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4  col-8 my-lg-0 my-4 position-relative ">
+                <div className="aboutimg animate-up-down">
+                    <Image src={"/assets/images/coding.svg"} width={25} height={25} alt="icon"></Image>
+                    <span className="para mb-0 fw-bold ms-2">Frontend Developer</span>
+                </div>
+              <Image
+                src={"/assets/images/me.JPG"}
+                width={500}
+                height={800}
+                alt="Hunain"
+                className="w-100 h-100 rounded-1"
+              ></Image>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Aboutme;
