@@ -9,7 +9,7 @@ const Header: React.FC<Props> = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg " id="sticky-header">
-        <div className="container-fluid">
+        <div className="container-lg">
           <a className="navbar-brand logo logo-t" href="#">
            H.A
           </a>

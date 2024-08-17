@@ -7,9 +7,9 @@ type Props = {};
 const Aboutme = (props: Props) => {
   return (
     <>
-      <section className="bg-black py-5">
-        <div className="container py-5">
-          <div className="row justify-content-lg-between justify-content-center align-items-center">
+      <section className=" py-5">
+        <div className="container-lg bg-black p-5 rounded-2">
+          <div className="row  justify-content-lg-between justify-content-center align-items-center">
             <div className="col-lg-7">
               <div className="aboutme-content">
                 <p className="para clr-light">About Me</p>
@@ -34,7 +34,7 @@ const Aboutme = (props: Props) => {
                 <div className="card main-card">
                   <div className="card-body p-4">
                     <div className="row">
-                      <div className="col-md-6 d-flex align-items-center">
+                      <div className="col-md-6 d-flex align-items-center my-2">
                         <span className="btn primary-btn-rounded">
                           <i
                             className="fa fa-envelope-o"
@@ -51,7 +51,7 @@ const Aboutme = (props: Props) => {
                           </Link>
                         </div>
                       </div>
-                      <div className="col-md-6 d-flex align-items-center">
+                      <div className="col-md-6 d-flex align-items-center my-2">
                         <span className="btn primary-btn-rounded">
                           <i className="fa fa-whatsapp" aria-hidden="true"></i>
                         </span>
@@ -76,11 +76,12 @@ const Aboutme = (props: Props) => {
                     <span className="para mb-0 fw-bold ms-2">Frontend Developer</span>
                 </div>
               <Image
-                src={"/assets/images/me.JPG"}
+                // src={"/assets/images/me.JPG"}
+                src={"/assets/images/68747470733a2f2f647862636f64652e636f6d2f6173736574732f696d616765732f33393939382d7765622d646576656c6f706d656e742e676966.gif"}
                 width={500}
-                height={800}
+                height={500}
                 alt="Hunain"
-                className="w-100 h-100 rounded-1"
+                className="w-100 object-fit-cover  rounded-1"
               ></Image>
             </div>
           </div>
