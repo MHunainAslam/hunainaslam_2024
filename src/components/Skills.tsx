@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type datas = {
+interface skilldatas  {
   name: string;
   img: string;
 };
 
-const Skills = (props: datas) => {
-  const data: datas[] = [
+const Skills: React.FC = () => {
+  const data: skilldatas [] = [
     {
       name: "html",
       img: "/assets/images/html.webp",
