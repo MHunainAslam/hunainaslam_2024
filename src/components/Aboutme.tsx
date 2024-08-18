@@ -8,7 +8,7 @@ const Aboutme = (props: Props) => {
   return (
     <>
       <section className=" py-5">
-        <div className="container-lg bg-black p-5 rounded-2">
+        <div className="container-lg bg-black px-md-5 py-5 rounded-2">
           <div className="row  justify-content-lg-between justify-content-center align-items-center">
             <div className="col-lg-7">
               <div className="aboutme-content">
@@ -70,7 +70,7 @@ const Aboutme = (props: Props) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4  col-8 my-lg-0 my-4 position-relative ">
+            <div className="col-lg-4 col-md-8 col-10 my-lg-0 my-4 position-relative ">
                 <div className="aboutimg animate-up-down">
                     <Image src={"/assets/images/coding.svg"} width={25} height={25} alt="icon"></Image>
                     <span className="para mb-0 fw-bold ms-2">Frontend Developer</span>

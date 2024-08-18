@@ -40,13 +40,13 @@ const Myresume: React.FC = () => {
     <section className="my-5">
       <div className="container-lg">
         <div className="row">
-          <div className="col-md-3">
-            <div className="card main-card resume-icon">
+          <div className="col-md-3 pt-md-5">
+            <div className="card main-card mb-md-0 mb-4 resume-icon mt-md-5">
                 {/* <Image src="/assets/images/laptop_icon_animation.gif" className="my-auto w-100 h-100" alt="coding" width={100} height={100}/> */}
               <i
                 className="fa fa-laptop clr-secondary m-auto"
                 aria-hidden="true"
-                style={{ fontSize: "100px" }}
+                style={{ fontSize: "80px" }}
               ></i>
             </div>
           </div>
@@ -56,7 +56,7 @@ const Myresume: React.FC = () => {
               Real <span className="clr-secondary">Problem Solutions</span>
               <br /> Experience
             </p>
-            <div className="card main-card">
+            <div className="card main-card mt-md-0 mt-4">
               <div className="card-body">
                 <div className="exp-grid">
                   {data.map((item, i) => {

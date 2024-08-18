@@ -5,42 +5,40 @@ import React from "react";
 type Props = {};
 
 const Header: React.FC<Props> = () => {
-  
   return (
     <>
       <nav className="navbar navbar-expand-lg " id="sticky-header">
         <div className="container-lg">
           <a className="navbar-brand logo logo-t" href="#">
-           H.A
+            H.A
           </a>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler primary-btn-rounded p-0"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <i className="fa fa-align-right" aria-hidden="true"></i>
           </button>
           <div
-            className="offcanvas offcanvas-end"
+            className="offcanvas offcanvas-end primary-bg"
             tabIndex={-1}
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
           >
-            <div className="offcanvas-header">
-              <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                Offcanvas
+            <div className="offcanvas-header justify-content-between">
+              <h5 className="offcanvas-title logo-t" id="offcanvasNavbarLabel">
+                H.A
               </h5>
-              <button
-                type="button"
-                className="btn-close"
+              <i
+                className="fa fa-times clr-white fs-2 pointer"
                 data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
+                aria-hidden="true"
+              ></i>
             </div>
-            <div className="offcanvas-body">
+            <div className="offcanvas-body text-center">
               <ul className="navbar-nav justify-content-center align-items-center flex-grow-1 ">
                 <li className="nav-item">
                   <Link
@@ -71,9 +69,8 @@ const Header: React.FC<Props> = () => {
                     Contact
                   </Link>
                 </li>
-
               </ul>
-                <button className="btn primary-btn">LET&apos;S TALK</button>
+              <button className="btn primary-btn ">LET&apos;S TALK</button>
             </div>
           </div>
         </div>

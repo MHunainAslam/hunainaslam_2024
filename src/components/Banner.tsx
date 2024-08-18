@@ -1,11 +1,15 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+
 
 type Props = {};
 
 const Banner = (props: Props) => {
+  
+  console.log("i am reder");
+
   return (
-    <section>
+    <section className="mt-lg-0 mt-4">
       <div className="container-lg">
         <div className="row align-items-center min-vh-90 justify-content-between">
           <div className="col-xl-4 col-md-7">
@@ -20,7 +24,7 @@ const Banner = (props: Props) => {
               Hire Me <i className="fa fa-chevron-right" aria-hidden="true"></i>
             </button>
           </div>
-          <div className="col-xl-3 col-md-5 d-xl-none my-md-0 my-4">
+          <div className="col-xl-3 col-md-5 d-xl-none d-md-block d-none my-md-0 my-4">
             <div className="card banner-card">
               <div className="catd-body">
                 <div className="border-bottom">
@@ -34,18 +38,20 @@ const Banner = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="col-lg my-xl-0 my-4">
+          <div className="col-lg-5 my-xl-0 my-4">
             <div className="position-relative banner-img mx-auto w-xl-100">
-              <Image
+              {/* <Image
                 src={"/assets/images/progress-shape.png"}
                 width={400}
                 height={400}
                 alt="hunain"
-              ></Image>
+              ></Image> */}
               <Image
                 // src={"/assets/images/hunain.png"}
                 // src={"/assets/images/68747470733a2f2f647862636f64652e636f6d2f6173736574732f696d616765732f33393939382d7765622d646576656c6f706d656e742e676966.gif"}
-                src={"/assets/images/68747470733a2f2f7777772e736172646f6e79782e696e2f7468656d65732f696d616765732f736f6674776172652d646576656c6f706d656e742f736172646f6e79782d736f667477617265646576656c6f706d656e743030312e676966.gif"}
+                src={
+                  "/assets/images/68747470733a2f2f7777772e736172646f6e79782e696e2f7468656d65732f696d616765732f736f6674776172652d646576656c6f706d656e742f736172646f6e79782d736f667477617265646576656c6f706d656e743030312e676966.gif"
+                }
                 // src={"/assets/images/Front-end_Developer.8e8fc63a21e6eaa925b4.gif"}
                 width={500}
                 height={600}
@@ -67,7 +73,7 @@ const Banner = (props: Props) => {
               ></Image>
             </div> */}
           </div>
-          <div className="col-xl-3 col-md-5 d-xl-block d-none">
+          <div className="col-xl-3 col-md-5 d-xl-block d-md-none d-block">
             <div className="card banner-card">
               <div className="catd-body">
                 <div className="border-bottom">
