@@ -10,7 +10,7 @@ const Header: React.FC<Props> = () => {
       <nav className="navbar navbar-expand-lg " id="sticky-header">
         <div className="container-lg">
           <a className="navbar-brand logo logo-t" href="#">
-            H.A
+          <Image src={"/assets/images/Logo.svg"} width={300} height={300} alt="logo" className="w-100 h-100"/>
           </a>
           <button
             className="navbar-toggler primary-btn-rounded p-0"
@@ -29,6 +29,12 @@ const Header: React.FC<Props> = () => {
             aria-labelledby="offcanvasNavbarLabel"
           >
             <div className="offcanvas-header justify-content-between">
+              <Image
+                src={"/assets/images/logoimg.png"}
+                width={100}
+                height={100}
+                alt="logo"
+              ></Image>
               <h5 className="offcanvas-title logo-t" id="offcanvasNavbarLabel">
                 H.A
               </h5>
