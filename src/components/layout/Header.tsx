@@ -10,7 +10,13 @@ const Header: React.FC<Props> = () => {
       <nav className="navbar navbar-expand-lg " id="sticky-header">
         <div className="container-lg">
           <a className="navbar-brand logo logo-t" href="#">
-          <Image src={"/assets/images/Logo.svg"} width={300} height={300} alt="logo" className="w-100 h-100"/>
+            <Image
+              src={"/assets/images/Logo.svg"}
+              width={300}
+              height={300}
+              alt="logo"
+              className="w-100 h-100"
+            />
           </a>
           <button
             className="navbar-toggler primary-btn-rounded p-0"
@@ -29,14 +35,14 @@ const Header: React.FC<Props> = () => {
             aria-labelledby="offcanvasNavbarLabel"
           >
             <div className="offcanvas-header justify-content-between">
-              <Image
-                src={"/assets/images/logoimg.png"}
-                width={100}
-                height={100}
-                alt="logo"
-              ></Image>
               <h5 className="offcanvas-title logo-t" id="offcanvasNavbarLabel">
-                H.A
+                <Image
+                  src={"/assets/images/Logo.svg"}
+                  width={300}
+                  height={300}
+                  alt="logo"
+                  className="w-100 h-100"
+                />
               </h5>
               <i
                 className="fa fa-times clr-white fs-2 pointer"
@@ -56,27 +62,27 @@ const Header: React.FC<Props> = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="#aboutme">
                     About
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="#resume">
                     Resume
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="#projects">
                     Projects
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" href="#">
+                  <Link className="nav-link" href="#contact">
                     Contact
                   </Link>
                 </li>
               </ul>
-              <button className="btn primary-btn ">LET&apos;S TALK</button>
+              <Link href={"https://wa.me/03352653956"} className="btn primary-btn ">LET&apos;S TALK</Link>
             </div>
           </div>
         </div>

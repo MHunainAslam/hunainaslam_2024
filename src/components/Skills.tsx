@@ -53,17 +53,17 @@ const Skills: React.FC = () => {
   return (
     <>
       <section className=" py-5 ">
-        <div className="container-lg  position-relative skills-content bg-black px-md-5 py-5 rounded-2">
+        <div className="container-lg  position-relative skills-content black-bg px-md-5 py-5 rounded-2">
           <div className="row justify-content-lg-between justify-content-center z-3 position-relative">
             <div className="col-lg-4 mt-4">
               <p className="para clr-light">My Skills</p>
-              <p className="fw-normal primary-heading clr-white">
-                Let’s Explore <span className="clr-secondary">My Skills</span>
+              <p className=" primary-heading clr-white">
+                Let’s Explore <span className="fw-bold clr-secondary">My Skills</span>
               </p>
-              <button className="btn primary-btn mt-4 px-4 py-2">
+              <Link href={"#projects"} className="btn primary-btn mt-4 px-4 py-2 mb-3">
                 Projects{" "}
                 <i className="fa fa-chevron-right" aria-hidden="true"></i>
-              </button>
+              </Link>
             </div>
             <div className="col-lg-8">
               <div className="row justify-content-center">

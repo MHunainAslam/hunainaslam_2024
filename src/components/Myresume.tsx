@@ -37,7 +37,7 @@ const Myresume: React.FC = () => {
   data.splice(4, 0, pushArray[0]); // Insert first "push" at index 1
 
   return (
-    <section className="my-5">
+    <section className="my-5" id="resume">
       <div className="container-lg">
         <div className="row">
           <div className="col-md-3 pt-md-5">
@@ -90,6 +90,7 @@ const Myresume: React.FC = () => {
                 </div>
               </div>
             </div>
+           
           </div>
         </div>
       </div>

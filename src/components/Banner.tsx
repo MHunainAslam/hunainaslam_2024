@@ -1,44 +1,43 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
-
+import Socialicon from "./Socialicon";
+import Link from "next/link";
 
 type Props = {};
 
 const Banner = (props: Props) => {
-  
-  console.log("i am reder");
-
   return (
-    <section className="mt-lg-0 mt-4">
+    <section className="mt-lg-0 mt-4" id="home">
       <div className="container-lg">
         <div className="row align-items-center min-vh-90 justify-content-between">
           <div className="col-xl-4 col-md-7">
-            <p className="mb-0 secondary-heading">Hello i&apos;m</p>
-            <p className="mb-0 primary-heading">Hunain Aslam</p>
+            <p className="mb-0 secondary-headin clr-light">Hello i&apos;m</p>
+            <p className="mb-0 primary-heading clr-secondary">Hunain Aslam</p>
             <p className=" heading">Frontend Developer</p>
             <p className="para clr-light">
               I am committed to excellence as a developer, driven by a passion
               for innovation and a dedication to exceeding expectations.
             </p>
-            <button className="btn primary-btn mt-4">
+            <Link href={"https://www.fiverr.com/hunainaslamm"} target="_blank" className="btn primary-btn mt-4">
               Hire Me <i className="fa fa-chevron-right" aria-hidden="true"></i>
-            </button>
+            </Link>
           </div>
           <div className="col-xl-3 col-md-5 d-xl-none d-md-block d-none my-md-0 my-4">
             <div className="card banner-card">
               <div className="catd-body">
                 <div className="border-bottom">
-                  <p className="primary-heading mb-1">02+</p>
+                  <p className="primary-heading mb-1 clr-secondary">02+</p>
                   <p className="para clr-light">Years Of Experience</p>
                 </div>
-                <div className="border-bottom mt-3">
-                  <p className="primary-heading mb-1">05+</p>
-                  <p className="para clr-light">Work with Companies</p>
+                <div className="border-bottom my-3">
+                  <p className="primary-heading mb-1 clr-secondary">20+</p>
+                  <p className="para clr-light">Project Complete</p>
                 </div>
+                <Socialicon />
               </div>
             </div>
           </div>
-          <div className="col-lg-5 my-xl-0 my-4">
+          <div className="col-xl-5 my-xl-0 my-4">
             <div className="position-relative banner-img mx-auto w-xl-100">
               {/* <Image
                 src={"/assets/images/progress-shape.png"}
@@ -77,13 +76,14 @@ const Banner = (props: Props) => {
             <div className="card banner-card">
               <div className="catd-body">
                 <div className="border-bottom">
-                  <p className="primary-heading mb-1">02+</p>
+                  <p className="primary-heading mb-1 clr-secondary">02+</p>
                   <p className="para clr-light">Years Of Experience</p>
                 </div>
-                <div className="border-bottom mt-3">
-                  <p className="primary-heading mb-1">05+</p>
-                  <p className="para clr-light">Work with Companies</p>
+                <div className="border-bottom my-3">
+                  <p className="primary-heading mb-1 clr-secondary">20+</p>
+                  <p className="para clr-light">Project Complete</p>
                 </div>
+                <Socialicon />
               </div>
             </div>
           </div>
