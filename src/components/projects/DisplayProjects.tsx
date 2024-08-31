@@ -28,18 +28,26 @@ const DisplayProjects: React.FC = () => {
       url: new URL("https://www.etijwaal.com/"),
     },
     {
-      name: "Dashboard",
-      title: "Eobusiness Club",
-      desc: "Admin can manage Partners, Users, Membership Packages and Monitoring sales",
-      img: "/assets/images/projects mockp/eoscl.png",
-      url: new URL("https://eobusinessclub.com/adminpanel"),
+      name: "ERP",
+      title: "Justice For US",
+      desc: "Developed a comprehensive ERP system featuring order management, content management, and intuitive dashboards for streamlined business operations",
+      img: "/assets/images/projects mockp/dentalzorg dashboard.png",
+      url: new URL("https://dashboard.dentalzorg.com/"),
     },
+
     {
       name: "Dashboard",
       title: "Justice For US",
       desc: "This system features three key roles: Admin, Soldier, and Civil Servant. The Admin can create specific training programs, manage content, monitor participant progress. and etc",
       img: "/assets/images/projects mockp/justice.png",
       url: new URL("https://justice-4-u.vercel.app/"),
+    },
+    {
+      name: "Dashboard",
+      title: "Eobusiness Club",
+      desc: "Admin can manage Partners, Users, Membership Packages and Monitoring sales",
+      img: "/assets/images/projects mockp/eoscl.png",
+      url: new URL("https://eobusinessclub.com/adminpanel"),
     },
   ];
 
