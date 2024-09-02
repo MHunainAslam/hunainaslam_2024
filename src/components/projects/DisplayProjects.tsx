@@ -29,7 +29,7 @@ const DisplayProjects: React.FC = () => {
     },
     {
       name: "ERP",
-      title: "Justice For US",
+      title: "Adalat Group",
       desc: "Developed a comprehensive ERP system featuring order management, content management, and intuitive dashboards for streamlined business operations",
       img: "/assets/images/projects mockp/dentalzorg dashboard.png",
       url: new URL("https://dashboard.dentalzorg.com/"),
