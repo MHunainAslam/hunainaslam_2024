@@ -8,7 +8,7 @@ import "./lib/fontawesome";
 import { Suspense } from "react";
 import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
-
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Hunain Aslam | Portfolio",
   description: "I am Hunain Aslam This is my Portfolio",
@@ -48,6 +48,7 @@ export default function RootLayout({
             <Footer />
           </Providers>
         </Suspense>
+        <Analytics />
       </body>
     </html>
   );
