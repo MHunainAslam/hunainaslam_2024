@@ -14,6 +14,13 @@ const DisplayProjects: React.FC = () => {
   const data: Props[] = [
     {
       name: "Web application",
+      title: "Mythya",
+      desc: "Enter the Realm of Legends – A Mythical Gaming Adventure!",
+      img: "/assets/images/projects mockp/myhtya.png",
+      url: new URL("https://mythya.vercel.app/"),
+    },
+    {
+      name: "Web application",
       title: "DentalZorg Dental Clinic",
       desc: "Dutch dental clinic in United Arab Emirates",
       img: "/assets/images/projects mockp/dentalzorg.png",
