@@ -26,7 +26,7 @@ const Banner = (props: Props) => {
             <div className="card banner-card">
               <div className="catd-body">
                 <div className="border-bottom">
-                  <p className="primary-heading mb-1 clr-secondary">02+</p>
+                  <p className="primary-heading mb-1 clr-secondary">03+</p>
                   <p className="para clr-light">Years Of Experience</p>
                 </div>
                 <div className="border-bottom my-3">
