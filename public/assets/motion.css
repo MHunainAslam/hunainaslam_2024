@@ -1,0 +1,307 @@
+/* ============================================================
+   MOTION LAYER
+   WebGL hero canvas placement + GSAP/Lenis support styles.
+   Loaded AFTER redesign.css so these rules win.
+   ============================================================ */
+
+/* ---------- Lenis smooth scroll ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ---------- Hero stacking ---------- */
+.hx-hero {
+  position: relative;
+  overflow: hidden;
+}
+.hx-hero > .hx-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Cursor code trail ---------- */
+.hx-cursor-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hx-cc-token {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  font-family: ui-monospace, "Cascadia Mono", "Fira Mono", monospace;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--accent-ink);
+  text-shadow: 0 0 10px var(--glow);
+  white-space: nowrap;
+  animation: hxCursorPop 1.15s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+@keyframes hxCursorPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--tx, 0px)),
+        calc(-50% - 46px)
+      )
+      scale(1.05) rotate(var(--rot, 0deg));
+  }
+}
+
+/* ---------- Magnetic buttons ----------
+   Let GSAP own the transform channel so the follow is crisp; keep the
+   other hover transitions. */
+.hx-btn-primary {
+  will-change: transform;
+  transition-property: box-shadow, background, color, border-color;
+}
+
+/* ---------- Skill bars ----------
+   Fallback: filled by default (visible with JS/GSAP disabled or reduced
+   motion). GSAP animates from scaleX(0) when it runs. */
+.hx-bar i {
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   WIDER LAYOUT — all sections share the same 1440 container.
+   Projects use a 3-column grid INSIDE that same width so every
+   section's edges stay aligned.
+   ============================================================ */
+/* 3 columns on large screens, degrading gracefully */
+.hx-projects-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 1200px) {
+  .hx-projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .hx-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* tighten description to 2 lines so the denser 3-up grid stays even */
+@media (min-width: 1201px) {
+  .hx-project-desc {
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* ============================================================
+   PROJECT CARDS — premium hover (3D tilt + spotlight + border)
+   ============================================================ */
+.hx-projects-grid {
+  perspective: 1200px;
+}
+.hx-project {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* cursor-following spotlight */
+.hx-project-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 40%, transparent),
+    transparent 55%
+  );
+  mix-blend-mode: screen;
+}
+[data-theme="light"] .hx-project-glow {
+  mix-blend-mode: multiply;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 20%, transparent),
+    transparent 55%
+  );
+}
+.hx-project:hover .hx-project-glow {
+  opacity: 1;
+}
+
+/* animated gradient border on hover */
+.hx-project::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    130deg,
+    var(--accent),
+    transparent 35%,
+    transparent 65%,
+    var(--accent-2)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.hx-project:hover::after {
+  opacity: 1;
+}
+
+/* "View Project" CTA pill in the overlay */
+.hx-project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+  margin-top: auto;
+  padding: 11px 20px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--on-accent);
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  box-shadow: 0 12px 28px var(--glow);
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s ease;
+}
+.hx-project:hover .hx-project-cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+.hx-project-cta i {
+  transition: transform 0.3s ease;
+}
+.hx-project:hover .hx-project-cta i {
+  transform: rotate(45deg) translate(2px, -2px);
+}
+
+/* index number watermark */
+.hx-project-body {
+  position: relative;
+}
+.hx-project-index {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--accent) 26%, transparent);
+  transition: color 0.35s ease;
+}
+.hx-project:hover .hx-project-index {
+  color: var(--accent-ink);
+}
+
+/* ---------- Active nav link (scroll-spy) ---------- */
+.hx-nav-links a.is-active {
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* ---------- Typewriter role ---------- */
+.hx-hero-role {
+  min-height: 1.4em; /* avoid layout shift as the phrase changes length */
+}
+.hx-typewriter {
+  display: inline-flex;
+  align-items: baseline;
+}
+.hx-tw-text {
+  background: linear-gradient(120deg, var(--accent-ink), var(--accent-2) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hx-tw-caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.05em;
+  margin-left: 4px;
+  transform: translateY(2px);
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--glow);
+  animation: hxCaretBlink 1s steps(1) infinite;
+}
+.hx-tw-caret.is-idle {
+  animation-duration: 1.2s;
+}
+@keyframes hxCaretBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* ---------- Floating code glyphs (site-wide fixed layer) ---------- */
+.hx-glyphs {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* behind content, above .aurora (-2) */
+  overflow: hidden;
+  pointer-events: none;
+}
+.hx-glyphs span {
+  position: absolute;
+  top: 110%;
+  font-family: ui-monospace, "Cascadia Mono", "Fira Mono", monospace;
+  font-weight: 700;
+  color: var(--accent-ink);
+  text-shadow: 0 0 14px var(--glow);
+  opacity: 0;
+  white-space: nowrap;
+  animation-name: hxGlyphFloat;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: top, transform, opacity;
+}
+@keyframes hxGlyphFloat {
+  0% { top: 110%; transform: translateX(0); opacity: 0; }
+  8% { opacity: 0.42; }
+  92% { opacity: 0.42; }
+  100% { top: -15%; transform: translateX(var(--drift, 0)); opacity: 0; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hx-glyphs,
+  .hx-cursor-layer {
+    display: none;
+  }
+  .hx-tw-caret {
+    animation: none;
+    opacity: 1;
+  }
+  .hx-bar i {
+    transform: scaleX(1) !important;
+  }
+}

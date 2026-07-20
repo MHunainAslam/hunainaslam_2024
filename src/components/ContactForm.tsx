@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import emailjs from "emailjs-com";
+
 interface ContactInfo {
   fullname: string;
   email: string;
@@ -16,7 +17,7 @@ const ContactForm: React.FC = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ContactInfo>();
 
   const onSubmit: SubmitHandler<ContactInfo> = (data: object) => {
@@ -32,99 +33,105 @@ const ContactForm: React.FC = () => {
         reset();
         setisloading(false);
         console.log(response);
-        console.log(data)
+        console.log(data);
       })
       .catch((error) => {
         setisloading(false);
         console.error("Error sending email:", error);
       });
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="row">
-        <div className="col-md-6 mb-4 ">
-          <label htmlFor="" className="mt-3">
-            Full Name <span className="clr-secondary">*</span>{" "}
+      <div className="hx-field-grid">
+        <div className="hx-field">
+          <label htmlFor="fullname">
+            Full Name <span className="hx-accent">*</span>
           </label>
           <input
+            id="fullname"
             type="text"
-            className="form-control inp mt-2"
-            placeholder="Hunain Aslam "
-            id=""
+            className="hx-input"
+            placeholder="Hunain Aslam"
             {...register("fullname", { required: true })}
           />
           {errors.fullname && (
-            <span className="para-sm clr-light">This field is required</span>
+            <span className="hx-err">This field is required</span>
           )}
         </div>
-        <div className="col-md-6 mb-4 ">
-          <label htmlFor="" className="mt-3">
-            Email Address <span className="clr-secondary">*</span>
+
+        <div className="hx-field">
+          <label htmlFor="email">
+            Email Address <span className="hx-accent">*</span>
           </label>
           <input
+            id="email"
             type="email"
-            className="form-control inp mt-2"
+            className="hx-input"
             placeholder="hunainaslam.ha@gmail.com"
             {...register("email", { required: true })}
-            id=""
           />
           {errors.email && (
-            <span className="para-sm clr-light">This field is required</span>
+            <span className="hx-err">This field is required</span>
           )}
         </div>
-        <div className="col-md-6 mb-4 ">
-          <label htmlFor="" className="mt-3">
-            Phone Number <span className="clr-secondary">*</span>
+
+        <div className="hx-field">
+          <label htmlFor="phone">
+            Phone Number <span className="hx-accent">*</span>
           </label>
           <input
+            id="phone"
             type="text"
-            className="form-control inp mt-2"
+            className="hx-input"
             placeholder="0335-2653956"
             onKeyPress={(e) => !/[+0-9]/.test(e.key) && e.preventDefault()}
             {...register("phone", { required: true })}
-            id=""
           />
           {errors.phone && (
-            <span className="para-sm clr-light">This field is required</span>
+            <span className="hx-err">This field is required</span>
           )}
         </div>
-        <div className="col-md-6 mb-4 ">
-          <label htmlFor="" className="mt-3">
-            Subject <span className="clr-secondary">*</span>
+
+        <div className="hx-field">
+          <label htmlFor="subject">
+            Subject <span className="hx-accent">*</span>
           </label>
           <input
+            id="subject"
             type="text"
-            className="form-control inp mt-2"
-            placeholder="I would like to discussed "
+            className="hx-input"
+            placeholder="I'd like to discuss…"
             {...register("subject", { required: true })}
-            id=""
           />
           {errors.subject && (
-            <span className="para-sm clr-light">This field is required</span>
+            <span className="hx-err">This field is required</span>
           )}
         </div>
-        <div className="col-md-12 mb-4 ">
-          <label htmlFor="" className="mt-3">
-            Message <span className="clr-secondary">*</span>
+
+        <div className="hx-field full">
+          <label htmlFor="message">
+            Message <span className="hx-accent">*</span>
           </label>
           <textarea
-            rows={4}
-            className="form-control inp mt-2"
-            placeholder="Write Message"
-            id=""
+            id="message"
+            rows={5}
+            className="hx-input"
+            placeholder="Write your message…"
             {...register("message", { required: true })}
           ></textarea>
           {errors.message && (
-            <span className="para-sm clr-light">This field is required</span>
+            <span className="hx-err">This field is required</span>
           )}
         </div>
-        <div className="col mt-4">
+
+        <div className="hx-field full">
           <button
-            className="btn primary-btn py-3 px-4"
+            className="hx-btn hx-btn-primary"
             type="submit"
             disabled={isloading}
           >
-            {isloading ? "Sending..." : " Send Message"}{" "}
+            {isloading ? "Sending…" : "Send Message"}{" "}
             <i className="fa fa-chevron-right" aria-hidden="true"></i>
           </button>
         </div>

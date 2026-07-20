@@ -2,16 +2,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Foldit:wght@100..900&display=swap");
 
-:root {
-  --primary: #131313;
-  --secondary: #c9f31d;
-  --white: #fff;
-  --black: #070707;
+:root,
+[data-theme="dark"] {
+  /* ---- theme tokens ---- */
+  --bg: #0d0b16;
+  --surface: #18151f;
+  --surface-deep: #100d1a;
+  --surface-solid: #0a0812;
+  --border-c: #2a2540;
+  --fg: #f4f2fb;
+  --fg-muted: #a49fc0;
+  --accent: #8b5cf6;
+  --accent-2: #6366f1;
+  --accent-ink: #a78bfa;
+  --on-accent: #ffffff;
+  --grid-line: rgba(255, 255, 255, 0.045);
+  --glow: rgba(139, 92, 246, 0.4);
+  --aurora-1: rgba(139, 92, 246, 0.22);
+  --aurora-2: rgba(99, 102, 241, 0.2);
+  --aurora-3: rgba(168, 85, 247, 0.16);
+  color-scheme: dark;
+
+  /* ---- backward-compatible aliases (existing rules use these) ---- */
+  --primary: var(--bg);
+  --secondary: var(--accent);
+  --white: var(--fg);
   --light: #ffffff59;
-  --light2: #b1b1b1;
-  --dark: #1f1f1f;
-  --border: #353535;
+  --light2: var(--fg-muted);
+  --dark: var(--surface);
+  --black: var(--surface-deep);
+  --border: var(--border-c);
   --inter: "Inter", sans-serif;
+}
+
+[data-theme="light"] {
+  /* Clean & airy — cool neutral gray bg, crisp white cards, deep slate text */
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-deep: #eef1f6;
+  --surface-solid: #ffffff;
+  --border-c: #e4e7ef;
+  --fg: #0f172a;
+  --fg-muted: #64748b;
+  --accent: #7c3aed;
+  --accent-2: #6366f1;
+  --accent-ink: #6d28d9;
+  --on-accent: #ffffff;
+  --grid-line: rgba(15, 23, 42, 0.04);
+  --glow: rgba(124, 58, 237, 0.2);
+  --aurora-1: rgba(124, 58, 237, 0.14);
+  --aurora-2: rgba(99, 102, 241, 0.12);
+  --aurora-3: rgba(139, 92, 246, 0.1);
+  color-scheme: light;
+
+  --light: #0e121659;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -32,13 +76,13 @@
 
 body {
   background-color: var(--primary) !important;
-  color: white !important;
+  color: var(--fg) !important;
   overflow-x: hidden;
 }
-@font-palette-values --my-palette {
+@font-palette-values --brand-palette {
   font-family: "Foldit";
   base-palette: 0; /* Index of the palette to modify */
-  override-colors: 0 #c9f31d, 1 #c8f31d81;
+  override-colors: 0 #22d3ee, 1 #22d3ee81;
 }
 .primary-bg {
   background-color: var(--primary) !important;
@@ -59,14 +103,14 @@ body {
 }
 .logo-t {
   font-family: "Foldit", sans-serif;
-  /* font-palette: --my-palette; */
+  /* font-palette: --brand-palette; */
   font-size: 40px !important;
   font-weight: 700;
-  color: #c9f31d; /* Fallback color */
+  color: var(--accent-ink); /* Fallback color */
 }
-@supports (font-palette: --my-palette) {
+@supports (font-palette: --brand-palette) {
   .logo-t {
-    font-palette: --my-palette;
+    font-palette: --brand-palette;
   }
 }
 .bg-grid {
@@ -484,5 +528,305 @@ ul.ul  li {
   .banner-img::after {
     width: 100px;
     height: 100px;
+  }
+}
+
+/* ============================================================
+   THEME + UI ENHANCEMENTS  (day/night, glass, glow, motion)
+   These rules come last so they layer cleanly over the base.
+   ============================================================ */
+
+/* Smooth cross-fade when switching day <-> night */
+body,
+.navbar,
+.black-bg,
+.main-card,
+.banner-card,
+.primary-bg,
+.card,
+.inp,
+.skills-card,
+.skills-card .card-footer,
+.aboutimg,
+.icon,
+.primary-btn,
+.primary-btn-rounded,
+.primary-btn-rounded-black {
+  transition: background-color 0.45s ease, color 0.45s ease,
+    border-color 0.45s ease, box-shadow 0.45s ease;
+}
+
+/* Text sitting on the accent fill must stay dark in every theme */
+.primary-btn,
+.primary-btn-rounded {
+  color: var(--on-accent) !important;
+}
+.icon {
+  color: var(--on-accent) !important;
+}
+.skills-card:hover .card-footer {
+  color: var(--on-accent) !important;
+}
+.primary-btn-rounded-black:hover,
+.primary-btn-rounded-black:hover i {
+  color: var(--on-accent) !important;
+}
+
+/* Accent used as text uses the readable "ink" token */
+.clr-secondary {
+  color: var(--accent-ink) !important;
+}
+
+/* The logo is a raster (PNG) lime wordmark embedded in an SVG, so it
+   can't be recolored via CSS color. Hue-shift it to match the cyan accent. */
+.logo-t img {
+  filter: hue-rotate(120deg) saturate(1.15);
+}
+
+/* Checklist bullets: recolor the (lime) checkmark SVG to the theme accent
+   by using it as a mask tinted with the accent-ink token. */
+ul.ul {
+  list-style: none;
+  padding-left: 0;
+}
+ul.ul li {
+  list-style: none; /* override the base list-style-image (green checkmark) */
+  list-style-image: none !important;
+  position: relative;
+}
+ul.ul li::before {
+  content: "";
+  position: absolute;
+  left: -0.9em;
+  top: 0.32em;
+  width: 0.85em;
+  height: 0.85em;
+  background-color: var(--accent-ink);
+  -webkit-mask: url("/assets/images/check-mark.svg") center / contain no-repeat;
+  mask: url("/assets/images/check-mark.svg") center / contain no-repeat;
+}
+
+
+/* Hardcoded surfaces become theme-aware */
+.bg-grid span {
+  background-color: var(--grid-line);
+}
+.banner-card {
+  background-color: var(--surface-solid) !important;
+  border: 1px solid var(--border-c);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+.aboutimg {
+  background-color: var(--fg);
+  color: var(--bg);
+  box-shadow: 0 12px 30px var(--glow);
+}
+
+/* Give the "black" sections depth in light mode */
+[data-theme="light"] .black-bg {
+  box-shadow: 0 24px 70px rgba(15, 25, 50, 0.08);
+  border: 1px solid var(--border-c);
+}
+[data-theme="light"] .main-card {
+  box-shadow: 0 10px 30px rgba(15, 25, 50, 0.05);
+}
+
+/* ---- Glassy sticky header ---- */
+.sticky-active {
+  background-color: color-mix(in srgb, var(--bg) 72%, transparent) !important;
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+  backdrop-filter: saturate(160%) blur(16px);
+  border-bottom: 1px solid var(--border-c);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ---- Button glow / lift ---- */
+.primary-btn:hover {
+  background-color: var(--fg) !important;
+  color: var(--bg) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--glow);
+}
+.primary-btn-rounded:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--glow);
+}
+
+/* ---- Card hover lift ---- */
+.skills-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+[data-theme="light"] .skills-card:hover {
+  box-shadow: 0 18px 40px rgba(120, 150, 20, 0.18);
+}
+
+/* ---- Animated aurora backdrop ---- */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora span {
+  position: absolute;
+  display: block;
+  width: 62vw;
+  height: 62vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 1;
+  mix-blend-mode: screen;
+}
+[data-theme="light"] .aurora span {
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+}
+.aurora span:nth-child(1) {
+  background: var(--aurora-1);
+  top: -10%;
+  left: -8%;
+  animation: auroraA 18s ease-in-out infinite;
+}
+.aurora span:nth-child(2) {
+  background: var(--aurora-3);
+  top: 18%;
+  right: -12%;
+  animation: auroraB 22s ease-in-out infinite;
+}
+.aurora span:nth-child(3) {
+  background: var(--aurora-2);
+  bottom: -15%;
+  left: 30%;
+  animation: auroraC 26s ease-in-out infinite;
+}
+@keyframes auroraA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8vw, 6vh) scale(1.15); }
+}
+@keyframes auroraB {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-6vw, 8vh) scale(0.9); }
+}
+@keyframes auroraC {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5vw, -7vh) scale(1.2); }
+}
+
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ============================================================
+   ANIMATED DAY / NIGHT TOGGLE
+   ============================================================ */
+.theme-toggle {
+  position: relative;
+  width: 68px;
+  height: 32px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 100px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+.theme-toggle:focus-visible {
+  box-shadow: 0 0 0 3px var(--glow);
+}
+.tt-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2b5876, #4e4376);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.45),
+    0 2px 10px rgba(0, 0, 0, 0.25);
+  transition: background 0.6s ease;
+}
+.theme-toggle[data-theme-state="light"] .tt-track {
+  background: linear-gradient(180deg, #8fd0f5, #4a90d9);
+}
+
+/* The sliding thumb: moon at night, sun by day */
+.tt-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  z-index: 3;
+  transition: transform 0.55s cubic-bezier(0.6, -0.2, 0.3, 1.4),
+    background 0.5s ease, box-shadow 0.5s ease;
+}
+.theme-toggle[data-theme-state="dark"] .tt-thumb {
+  transform: translateX(0);
+  background: radial-gradient(circle at 35% 30%, #f4f6ff, #c8d0e0 65%, #aab3c5);
+  box-shadow: inset -6px -3px 0 0 #b7c0d4, 0 0 10px rgba(200, 210, 235, 0.5);
+}
+.theme-toggle[data-theme-state="light"] .tt-thumb {
+  transform: translateX(36px);
+  background: radial-gradient(circle at 35% 30%, #fff6cf, #ffd93b 60%, #f5b400);
+  box-shadow: 0 0 14px rgba(255, 205, 50, 0.85);
+}
+
+/* Stars (night only) */
+.tt-stars,
+.tt-clouds {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease;
+}
+.tt-stars i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 4px #fff;
+  animation: twinkle 2.4s infinite ease-in-out;
+}
+.tt-stars i:nth-child(1) { top: 7px; right: 12px; animation-delay: 0s; }
+.tt-stars i:nth-child(2) { top: 16px; right: 20px; width: 2px; height: 2px; animation-delay: 0.6s; }
+.tt-stars i:nth-child(3) { top: 10px; right: 28px; animation-delay: 1.1s; }
+.tt-stars i:nth-child(4) { top: 20px; right: 34px; width: 2px; height: 2px; animation-delay: 1.6s; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Clouds (day only) */
+.tt-clouds i {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 100px;
+}
+.tt-clouds i:nth-child(1) { width: 16px; height: 6px; left: 8px; bottom: 6px; }
+.tt-clouds i:nth-child(2) { width: 10px; height: 5px; left: 15px; bottom: 12px; }
+
+.theme-toggle[data-theme-state="light"] .tt-stars { opacity: 0; }
+.theme-toggle[data-theme-state="dark"] .tt-clouds { opacity: 0; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .aurora span,
+  .animate-up-down,
+  .tt-stars i {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

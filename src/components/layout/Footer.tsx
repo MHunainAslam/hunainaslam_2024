@@ -1,18 +1,29 @@
+import Link from "next/link";
 import React from "react";
-import Socialicon from "../Socialicon";
 
 type Props = {};
 
+const LINKS = [
+  { label: "Mail", href: "mailto:hunainaslam.ha@gmail.com" },
+  { label: "WhatsApp", href: "https://wa.me/03352653956" },
+  { label: "Github", href: "https://github.com/mhunainaslam" },
+  { label: "Linkedin", href: "https://www.linkedin.com/in/hunain-aslam" },
+];
+
 const Footer = (props: Props) => {
   return (
-    <footer className="black-bg">
-      <div className="container-lg">
-        <div className="row py-md-4 py-2 justify-content-md-between justify-content-center">
-          <div className="col-md-6">
-            <p className="para mb-md-0 text-md-start text-center">Copyright @2024 - 2025</p>
-          </div>
-          <div className="col-md-6">
-            <Socialicon footer />
+    <footer className="hx-footer">
+      <div className="hx-container">
+        <div className="hx-footer-inner">
+          <p className="hx-muted" style={{ margin: 0 }}>
+            © 2024 – 2025 Hunain Aslam. All rights reserved.
+          </p>
+          <div className="hx-footer-links">
+            {LINKS.map((l) => (
+              <Link key={l.label} href={l.href} target="_blank">
+                {l.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

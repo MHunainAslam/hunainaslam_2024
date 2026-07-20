@@ -9,23 +9,21 @@ const Providers: React.FC<any> = ({ children }) => {
   }, []);
   useEffect(() => {
     const handleScroll = () => {
-      const headers = document.querySelector("#sticky-header");
-
-      if (window.scrollY > 100) {
-        headers?.classList.add("sticky-active");
-        headers?.classList.remove("sticky-soon");
-      } else if (window.scrollY > 10) {
-        headers?.classList.add("sticky-soon");
-        headers?.classList.remove("sticky-active");
+      const header = document.querySelector("#sticky-header");
+      if (window.scrollY > 40) {
+        header?.classList.add("is-scrolled");
       } else {
-        headers?.classList.remove("sticky-active");
-        headers?.classList.remove("sticky-soon");
+        header?.classList.remove("is-scrolled");
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // NOTE: scroll-reveal choreography is now handled by <SiteMotion /> (GSAP +
+  // ScrollTrigger). The old IntersectionObserver reveal was removed to avoid
+  // two systems animating the same elements.
 
   return children;
 };
