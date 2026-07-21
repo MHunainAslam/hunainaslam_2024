@@ -1,16 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ScrollProgress from "@/components/ui/ScrollProgress";
 import { profile } from "@/lib/data";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
   display: "swap",
 });
 const mono = JetBrains_Mono({
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | Hunain Aslam",
   },
   description:
-    "Senior Frontend Engineer specializing in React.js & Next.js. I build fast, SEO-friendly ERP systems and web apps that convert. Based in Karachi, Pakistan.",
+    "Frontend engineer in Karachi. I build ERP systems and web apps in React and Next.js — currently leading the frontend on a dental ERP.",
   keywords: [
     "Hunain Aslam",
     "Frontend Engineer",
@@ -69,7 +71,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08090c",
+  themeColor: "#0d0c0b",
   width: "device-width",
   initialScale: 1,
 };
@@ -81,15 +83,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${mono.variable}`}
+      className={`${inter.variable} ${display.variable} ${mono.variable}`}
     >
-      <body className="font-sans antialiased">
-        <ThemeProvider>
-          <ScrollProgress />
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+      <body className="grain font-sans antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
       </body>
     </html>

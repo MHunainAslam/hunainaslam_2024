@@ -9,43 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // near-black surfaces
+        // cool slate-black surfaces
         ink: {
-          950: "#08090c",
-          900: "#0b0d12",
-          800: "#111319",
-          700: "#181b23",
+          950: "#0a0c11",
+          900: "#0f131a",
+          800: "#161b24",
+          700: "#1e2530",
         },
-        // single accent — electric emerald
+        // cool paper tones for light mode
+        paper: {
+          50: "#f4f6f9",
+          100: "#e9edf3",
+        },
+        // single professional accent — refined blue
         accent: {
-          DEFAULT: "#2dd4bf",
-          400: "#34d399",
-          500: "#10b981",
-          600: "#059669",
+          DEFAULT: "#2f6fed",
+          400: "#5b8bf5",
+          500: "#2f6fed",
+          600: "#1f56c9",
         },
       },
       fontFamily: {
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
-      backgroundImage: {
-        "grid-dark":
-          "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
-        "grid-light":
-          "linear-gradient(to right, rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.045) 1px, transparent 1px)",
-      },
       keyframes: {
-        "gradient-x": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
-        shimmer: {
-          "100%": { transform: "translateX(100%)" },
-        },
         marquee: {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
@@ -54,23 +43,30 @@ const config: Config = {
           from: { transform: "translateX(-50%)" },
           to: { transform: "translateX(0)" },
         },
-        aurora: {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "33%": { transform: "translate(40px, -30px) scale(1.15)" },
-          "66%": { transform: "translate(-30px, 20px) scale(0.9)" },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
         },
-        "spin-slow": {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
+        drift: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(60px, 40px) scale(1.15)" },
+        },
+        "drift-rev": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(-50px, -40px) scale(0.9)" },
+        },
+        "bounce-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(6px)" },
         },
       },
       animation: {
-        "gradient-x": "gradient-x 6s ease infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-rev": "marquee-rev 40s linear infinite",
         float: "float 6s ease-in-out infinite",
-        marquee: "marquee 28s linear infinite",
-        "marquee-rev": "marquee-rev 28s linear infinite",
-        aurora: "aurora 16s ease-in-out infinite",
-        "spin-slow": "spin-slow 22s linear infinite",
+        drift: "drift 18s ease-in-out infinite",
+        "drift-rev": "drift-rev 22s ease-in-out infinite",
+        "bounce-soft": "bounce-soft 1.8s ease-in-out infinite",
       },
     },
   },

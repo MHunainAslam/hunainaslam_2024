@@ -16,31 +16,28 @@ export const profile = {
 };
 
 export const whatsapp = `https://wa.me/${profile.phoneRaw}?text=${encodeURIComponent(
-  "Hi Hunain, I saw your portfolio and I'd like to talk about a project."
+  "Hey Hunain, I came across your site — got a minute to chat?"
 )}`;
 export const mailto = `mailto:${profile.email}`;
 
-export const heroHeadlines = [
-  "Senior Frontend Engineer",
-  "React & Next.js Specialist",
-  "I build fast, SEO-friendly web apps.",
-];
+export const heroIntro =
+  "I'm a frontend engineer. For the last 3 years I've been building React and Next.js apps — right now, a full ERP system for a dental company. I like fast load times, code I'm not embarrassed by, and interfaces people actually enjoy using.";
 
 export const stats = [
-  { value: "3+", label: "Years Experience" },
-  { value: "20+", label: "Projects Delivered" },
-  { value: "7+", label: "Production Apps Shipped" },
+  { value: "3+", label: "Years building for the web" },
+  { value: "7+", label: "Apps running in production" },
+  { value: "20+", label: "Projects shipped" },
 ];
 
 export const about = {
   bio: [
-    "I'm a meticulous frontend engineer who turns complex business requirements — ERP systems, dashboards, payments — into clean, fast, user-friendly products.",
-    "Quick learner and reliable team player. I ship production code that scales, and I care as much about performance and SEO as I do about pixel-perfect UI.",
+    "I began as an intern at Eliteblue in 2022 and grew into a senior role over the following two years. Today I lead frontend development on Dentalzorg's ERP — a large product with dozens of interconnected screens, real-time data, and no shortage of edge cases. I enjoy taking involved business requirements and turning them into interfaces that feel straightforward to use.",
+    "I work primarily in React and Next.js. I've delivered server-rendered marketing sites, admin dashboards, payment integrations with Stripe and PayPal, and real-time features with Pusher. I care about performance, test on real devices, and hold my work to a standard I'd be comfortable shipping myself.",
   ],
   highlights: [
-    "Currently building a dental-industry ERP end-to-end",
-    "SSR / SSG, performance & Core Web Vitals focus",
-    "From requirement to production, feature-complete",
+    "Leading frontend on a dental ERP, end to end",
+    "Comfortable with SSR/SSG and Core Web Vitals",
+    "Went from intern to senior in ~2 years",
   ],
   education: [
     {
@@ -124,17 +121,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Dentalzorg ERP System",
+    name: "Dentalzorg ERP",
     description:
-      "End-to-end ERP platform for dental clinic operations — scheduling, billing, inventory and real-time updates.",
+      "A dental-industry ERP covering scheduling, billing and inventory, with dozens of interconnected screens kept in sync in real time. The product I work on day to day.",
     tags: ["Next.js", "Tailwind CSS", "Redux", "Pusher", "REST APIs"],
     image: "/assets/images/projects/dentalzorg-dashboard.png",
     featured: true,
   },
   {
-    name: "Dentalzorg Dental Clinic",
+    name: "Dentalzorg Clinic Site",
     description:
-      "SEO-friendly clinic website with online appointment booking and server-side rendering.",
+      "The public clinic website — server-rendered for fast load times and SEO, with online appointment booking connected to the backend.",
     tags: ["Next.js", "Bootstrap", "REST APIs", "SSR"],
     image: "/assets/images/projects/dentalzorg.png",
     link: "https://dentalzorg.com",
@@ -143,60 +140,39 @@ export const projects: Project[] = [
   {
     name: "Etijwaal eSIM",
     description:
-      "Corporate site for an international eSIM telecom provider with integrated payments.",
+      "Marketing and checkout site for an international eSIM provider. I built the frontend and integrated the Stripe and PayPal payment flows.",
     tags: ["Next.js", "Bootstrap", "REST APIs", "PayPal", "Stripe"],
     image: "/assets/images/projects/etijwaal.png",
     link: "https://etijwaal.com",
     featured: true,
   },
   {
-    name: "Eobusiness Club",
+    name: "EO Business Club",
     description:
-      "Business networking platform with memberships and event management.",
+      "A professional networking platform with paid memberships and event registration. I built the member-facing site and its Stripe billing.",
     tags: ["Next.js", "Bootstrap", "Stripe"],
     image: "/assets/images/projects/eoscl.png",
     link: "https://eobusinessclub.com",
   },
   {
-    name: "Mythya Game",
+    name: "Mythya",
     description:
-      "Multiplayer online game with real-time player interaction and matchmaking.",
+      "A multiplayer browser game with real-time player interaction and matchmaking.",
     tags: ["Next.js", "Bootstrap", "Real-time"],
     image: "/assets/images/projects/myhtya.png",
     link: "https://mythya.vercel.app",
   },
   {
-    name: "Eobusiness Dashboard",
+    name: "EO Business Dashboard",
     description:
-      "Admin dashboard for memberships, vendors, event registrations and users.",
+      "The administrative side of EO Business Club — managing members, vendors, event registrations and users.",
     tags: ["React.js", "Bootstrap", "REST APIs"],
   },
   {
     name: "Samurai Dogg",
     description:
-      "High-impact landing page for a crypto meme-coin project with bold motion.",
+      "A single-page site for a crypto project, with a bold, motion-led landing experience.",
     tags: ["Next.js", "TypeScript", "Bootstrap"],
-  },
-];
-
-export const testimonials = [
-  {
-    quote:
-      "Hunain takes ownership from requirement to production. He ships fast without cutting corners on quality.",
-    name: "Engineering Manager",
-    title: "Adalat Group",
-  },
-  {
-    quote:
-      "One of the most reliable frontend engineers I've worked with — great eye for UI and serious about performance.",
-    name: "Product Lead",
-    title: "Client Project",
-  },
-  {
-    quote:
-      "Turned a complex ERP spec into a clean, intuitive interface our whole team could use on day one.",
-    name: "Operations Head",
-    title: "Dentalzorg",
   },
 ];
 

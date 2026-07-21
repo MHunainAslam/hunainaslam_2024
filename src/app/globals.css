@@ -8,42 +8,53 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 88px;
 }
 
 body {
-  background: #f6f7f9;
-  color: #14161d;
+  background: #f4f6f9;
+  color: #12151c;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 .dark body {
-  background: #08090c;
-  color: #ecedf3;
+  background: #0a0c11;
+  color: #e8eaf0;
 }
 
 ::selection {
-  background: rgba(45, 212, 191, 0.28);
-  color: #06231f;
-}
-.dark ::selection {
-  color: #eafffb;
+  background: #2f6fed;
+  color: #fff;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 11px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(45, 212, 191, 0.4);
+  background: rgba(47, 111, 237, 0.45);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(45, 212, 191, 0.6);
+  background: #2f6fed;
+}
+
+/* Subtle film grain — an editorial, human texture (kills the "clean AI" feel) */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .grain::before {
+  opacity: 0.06;
 }
 
 @layer components {
@@ -51,63 +62,65 @@ body {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
 
-  /* Glassmorphism card — light base, dark override */
-  .glass {
-    @apply rounded-2xl border border-black/[0.07] bg-white/60 backdrop-blur-xl
-           dark:border-white/10 dark:bg-white/[0.03];
+  /* Flat bordered card — no glass blur */
+  .card {
+    @apply rounded-2xl border border-black/[0.12] bg-white/70 dark:border-white/[0.10] dark:bg-white/[0.02];
   }
 
-  .glass-hover {
-    @apply transition-all duration-300
-           hover:border-accent/40 hover:shadow-[0_10px_40px_-12px_rgba(45,212,191,0.4)]
-           hover:bg-white/80 dark:hover:bg-white/[0.05];
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-accent/60
+           hover:shadow-[6px_6px_0_0_rgba(255,92,53,0.9)]
+           dark:hover:shadow-[6px_6px_0_0_rgba(255,92,53,0.85)];
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-accent-500 via-accent to-cyan-500 bg-clip-text text-transparent
-           dark:from-accent-400 dark:via-accent dark:to-cyan-400;
+  /* Numbered section eyebrow — editorial */
+  .eyebrow {
+    @apply mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-accent;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-accent;
   }
 
-  .section-label {
-    @apply mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent-600 dark:text-accent;
+  .display {
+    @apply font-display font-semibold tracking-tight;
   }
 
   .heading {
-    @apply text-3xl font-bold tracking-tight sm:text-4xl md:text-[2.75rem] md:leading-[1.1];
+    @apply display text-3xl leading-[1.05] sm:text-4xl md:text-5xl;
   }
 
   .muted {
-    @apply text-black/60 dark:text-white/60;
+    @apply text-black/60 dark:text-white/[0.55];
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink-950
-           transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_34px_-8px_rgba(45,212,191,0.65)] active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3
+           text-sm font-semibold text-white transition-all duration-200
+           hover:bg-accent-600 hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-semibold
-           transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:bg-black/[0.03]
-           dark:border-white/15 dark:hover:bg-white/5;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/20 px-6 py-3
+           text-sm font-semibold transition-all duration-200
+           hover:-translate-y-0.5 hover:border-accent hover:text-accent
+           dark:border-white/20;
   }
 
   .chip {
-    @apply inline-flex items-center rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-xs font-medium text-black/70
-           dark:border-white/10 dark:bg-white/5 dark:text-white/70;
+    @apply inline-flex items-center rounded-md border border-black/[0.12] bg-transparent px-2.5 py-1
+           font-mono text-[11px] text-black/70
+           dark:border-white/[0.15] dark:text-white/[0.65];
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 font-semibold text-accent
+           after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-accent
+           after:transition-all after:duration-300 hover:after:w-full;
   }
 }
 
-/* Ambient background glow blobs */
-.glow-blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Respect reduced-motion: kill the looping/decorative animations */
+/* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
