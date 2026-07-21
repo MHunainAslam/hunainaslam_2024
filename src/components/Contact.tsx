@@ -1,85 +1,154 @@
-import Image from "next/image";
-import React from "react";
-import ContactForm from "./ContactForm";
-import Socialicon from "./Socialicon";
+"use client";
 
-interface skilldatas {
+import { useForm } from "react-hook-form";
+import { Mail, MessageCircle, Send } from "lucide-react";
+import { mailto, profile } from "@/lib/data";
+import Reveal from "./ui/Reveal";
+import { Github, Linkedin } from "./ui/BrandIcons";
+
+type FormValues = {
   name: string;
-  img: string;
-}
-
-const Conatct: React.FC = () => {
-  const data: skilldatas[] = [
-    {
-      name: "html",
-      img: "/assets/images/html.webp",
-    },
-    {
-      name: "css",
-      img: "/assets/images/css.webp",
-    },
-    {
-      name: "Bootstrap",
-      img: "/assets/images/bootstrap.webp",
-    },
-    {
-      name: "javascrip",
-      img: "/assets/images/javascript.webp",
-    },
-    {
-      name: "typescript",
-      img: "/assets/images/typescript.webp",
-    },
-    {
-      name: "React Js",
-      img: "/assets/images/react.webp",
-    },
-    {
-      name: "Next Js",
-      img: "/assets/images/next.webp",
-    },
-    {
-      name: "Vue js",
-      img: "/assets/images/vue.webp",
-    },
-    {
-      name: "Redux",
-      img: "/assets/images/redux.webp",
-    },
-    {
-      name: "Github",
-      img: "/assets/images/github.webp",
-    },
-  ];
-  return (
-    <>
-      <section className="py-md-5" id="contact">
-        <div className="container-lg  position-relative px-md-5 py-5 rounded-2">
-          <div className="row justify-content-lg-between justify-content-center z-3 position-relative">
-            <div className="col-lg-4 mt-4">
-              <p className="para clr-light">Get In Touch</p>
-              <p className="fw-normal primary-heading clr-white">
-                Let&apos;s <span className=" clr-secondary">Talk</span>
-              </p>
-              <p className="para clr-light">
-                Feel free to reach out if you&apos;re looking to hire a developer
-              </p>
-              <ul className="d-block my-5 ul">
-                <li className="para-lg my-4 ps-3">Web Development</li>
-                {/* <li className="para-lg">App Development</li> */}
-                <li className="para-lg my-4 ps-3">Product Design</li>
-                {/* <li className="para-lg">UI/UX Design</li> */}
-              </ul>
-              <Socialicon />
-            </div>
-            <div className="col-lg-8">
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
 };
 
-export default Conatct;
+export default function Contact() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    const text = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      data.phone && `Phone: ${data.phone}`,
+      `Subject: ${data.subject}`,
+      "",
+      data.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(
+      `https://wa.me/${profile.phoneRaw}?text=${encodeURIComponent(text)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  const inputClass =
+    "w-full rounded-lg border border-black/15 bg-white/60 px-4 py-3 text-sm outline-none transition-colors placeholder:text-black/40 focus:border-accent dark:border-white/15 dark:bg-white/[0.03] dark:placeholder:text-white/40";
+
+  const directLinks = [
+    {
+      label: "WhatsApp",
+      value: profile.phoneDisplay,
+      href: `https://wa.me/${profile.phoneRaw}`,
+      icon: MessageCircle,
+      primary: true,
+    },
+    { label: "Email", value: profile.email, href: mailto, icon: Mail },
+    { label: "GitHub", value: "mhunainaslam", href: profile.github, icon: Github },
+    { label: "LinkedIn", value: "hunain-aslam", href: profile.linkedin, icon: Linkedin },
+  ];
+
+  return (
+    <section id="contact" className="relative py-24 sm:py-28">
+      <div className="container-x">
+        <Reveal>
+          <div className="text-center">
+            <span className="eyebrow justify-center">Contact</span>
+            <h2 className="heading mx-auto max-w-2xl">
+              Let&apos;s talk<span className="text-accent">.</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base muted">
+              Got a project, a role, or just want to say hi? WhatsApp is the
+              fastest way to reach me — I usually reply within a few hours.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <Reveal>
+            <div className="flex h-full flex-col gap-3">
+              {directLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`card card-hover flex items-center gap-4 p-4 ${
+                    l.primary ? "!border-accent" : ""
+                  }`}
+                >
+                  <span
+                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-lg ${
+                      l.primary ? "bg-accent text-white" : "bg-black/5 text-accent dark:bg-white/5"
+                    }`}
+                  >
+                    <l.icon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 text-sm font-semibold">
+                      {l.label}
+                      {l.primary && (
+                        <span className="rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-accent">
+                          fastest
+                        </span>
+                      )}
+                    </div>
+                    <div className="truncate font-mono text-xs muted">{l.value}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <form onSubmit={handleSubmit(onSubmit)} className="card space-y-4 p-6 sm:p-8">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <input {...register("name", { required: true })} placeholder="Your name" className={inputClass} />
+                  {errors.name && <p className="mt-1 text-xs text-accent">Name is required</p>}
+                </div>
+                <div>
+                  <input
+                    {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
+                    placeholder="Email address"
+                    className={inputClass}
+                  />
+                  {errors.email && <p className="mt-1 text-xs text-accent">Valid email required</p>}
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input {...register("phone")} placeholder="Phone (optional)" className={inputClass} />
+                <input {...register("subject", { required: true })} placeholder="Subject" className={inputClass} />
+              </div>
+
+              <textarea
+                {...register("message", { required: true })}
+                placeholder="Tell me a bit about what you need…"
+                rows={5}
+                className={`${inputClass} resize-none`}
+              />
+              {errors.message && <p className="-mt-2 text-xs text-accent">Please add a short message</p>}
+
+              <button type="submit" className="btn-primary w-full">
+                <Send className="h-4 w-4" />
+                Send via WhatsApp
+              </button>
+              <p className="text-center font-mono text-xs muted">
+                Opens WhatsApp with your message ready to go.
+              </p>
+            </form>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
