@@ -1,53 +1,77 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Header from "@/components/layout/Header";
-import "bootstrap/dist/css/bootstrap.css";
-import Providers from "./Providers";
-import "../../public/assets/style.css";
-import "./lib/fontawesome";
-import { Suspense } from "react";
-import Footer from "@/components/layout/Footer";
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { CodeCursor } from "@/components/ui/CodeCursor";
+import { profile } from "@/data/portfolio";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+});
+
+const siteUrl = "https://hunainaslam.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Hunain Aslam | Portfolio",
-  description: "I am Hunain Aslam This is my Portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${profile.name} — ${profile.role}`,
+    template: `%s | ${profile.name}`,
+  },
+  description: profile.summary,
+  keywords: [
+    "Hunain Aslam",
+    "Frontend Engineer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Tailwind CSS",
+    "Karachi",
+    "Portfolio",
+  ],
+  authors: [{ name: profile.name }],
+  creator: profile.name,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    title: `${profile.name} — ${profile.role}`,
+    description: profile.summary,
+    siteName: `${profile.name} Portfolio`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — ${profile.role}`,
+    description: profile.summary,
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#05060a",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-      </head>
-
-      <body className={inter.className}>
-        <div className="bg-grid">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <Suspense fallback={"Loading"}>
-          <Providers>
-            <Header />
-            {children}
-            <Footer />
-          </Providers>
-        </Suspense>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="font-sans antialiased">
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <CodeCursor />
         <Analytics />
       </body>
     </html>

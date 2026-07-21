@@ -1,0 +1,215 @@
+"use client";
+
+import { motion, type Variants } from "framer-motion";
+import { Mail } from "lucide-react";
+import { companies, profile, stats } from "@/data/portfolio";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
+import { Typewriter } from "@/components/ui/Typewriter";
+import { MotionButton } from "@/components/ui/MotionButton";
+import { RetroGrid } from "@/components/ui/RetroGrid";
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const heroStats = stats.slice(0, 3);
+
+export function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-16"
+    >
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 -z-20">
+        {/* retro perspective grid, anchored to the lower half */}
+        <RetroGrid className="top-[35%]" opacity={0.5} />
+        {/* moving color mesh */}
+        <div
+          className="absolute inset-0 animate-gradient-shift opacity-[0.28] blur-[90px]"
+          style={{
+            backgroundImage:
+              "linear-gradient(115deg, #22d3ee 0%, #3b82f6 30%, #6366f1 55%, #0ea5e9 80%, #22d3ee 100%)",
+            backgroundSize: "220% 220%",
+          }}
+        />
+        {/* floating aurora accents */}
+        <motion.div
+          className="aurora left-[8%] top-[12%] h-[360px] w-[360px] bg-accent-cyan/25"
+          animate={{ x: [0, 40, 0], y: [0, 30, 0], scale: [1, 1.12, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="aurora right-[6%] top-[20%] h-[320px] w-[320px] bg-accent-indigo/25"
+          animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* vignette + noise for depth */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,transparent,#05060a_85%)]" />
+        <div className="noise-overlay absolute inset-0" />
+      </div>
+
+      {/* Limelight spotlight — beam + cone shining down onto the content */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, rotate: [-2.5, 2.5, -2.5] }}
+        transition={{
+          opacity: { duration: 1 },
+          rotate: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+        }}
+        style={{ transformOrigin: "top center" }}
+      >
+        {/* glowing emitter bar */}
+        <div className="mx-auto h-[4px] w-40 rounded-full bg-accent-cyan shadow-[0_0_28px_8px_rgba(34,211,238,0.75)]" />
+        {/* spotlight cone spilling downward */}
+        <div className="h-[560px] w-[300px] bg-gradient-to-b from-accent-cyan/25 via-accent-cyan/[0.06] to-transparent blur-[6px] [clip-path:polygon(38%_0%,62%_0%,100%_100%,0%_100%)] sm:w-[460px]" />
+      </motion.div>
+
+      <div className="container-px relative w-full">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="mx-auto flex max-w-3xl flex-col items-center text-center"
+        >
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 bg-accent-cyan/[0.06] px-4 py-1.5 text-sm text-accent-cyan backdrop-blur"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan" />
+            </span>
+            Available for new opportunities
+          </motion.div>
+
+          <motion.h1
+            variants={item}
+            className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-slate-50 sm:text-6xl md:text-7xl"
+          >
+            <Typewriter
+              text={`Hi, I'm ${profile.name}`}
+              speed={75}
+              delay={500}
+              className="text-gradient"
+              cursorClassName="bg-accent-cyan"
+            />
+          </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="mt-5 text-lg text-slate-300 sm:text-xl md:text-2xl"
+          >
+            <span className="font-semibold text-slate-100">{profile.role}</span>{" "}
+            — {profile.tagline}
+          </motion.p>
+
+          <motion.p
+            variants={item}
+            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400"
+          >
+            Specializing in React, Next.js &amp; TypeScript, with a focus on
+            performance, SEO, and clean, scalable UI.
+          </motion.p>
+
+          <motion.div
+            variants={item}
+            className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          >
+            <MotionButton href="#projects" label="View My Work" />
+            <MotionButton
+              href="#contact"
+              label="Get in Touch"
+              variant="secondary"
+              icon={Mail}
+            />
+          </motion.div>
+
+          <motion.div
+            variants={item}
+            className="mt-8 flex items-center justify-center gap-4"
+          >
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+            >
+              <GithubIcon className="h-5 w-5" />
+            </a>
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+            >
+              <LinkedinIcon className="h-5 w-5" />
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label="Email"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+          </motion.div>
+
+          <motion.dl
+            variants={item}
+            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
+          >
+            {heroStats.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-x-8">
+                {i > 0 && <span className="h-8 w-px bg-white/10" />}
+                <div>
+                  <dd className="font-display text-2xl font-bold text-slate-100">
+                    {s.value}
+                    <span className="text-accent-cyan">{s.suffix}</span>
+                  </dd>
+                  <dt className="mt-0.5 text-xs text-slate-500">{s.label}</dt>
+                </div>
+              </div>
+            ))}
+          </motion.dl>
+        </motion.div>
+
+        {/* company strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="mt-14 border-t border-white/[0.06] pt-8"
+        >
+          <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500">
+            Experience across
+          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+            {companies.map((c) => (
+              <span
+                key={c}
+                className="font-display text-base font-semibold text-slate-400 transition-colors hover:text-slate-200 sm:text-lg"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

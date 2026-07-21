@@ -1,18 +1,21 @@
-import Aboutme from "@/components/Aboutme";
-import Banner from "@/components/Banner";
-import Conatct from "@/components/Contact";
-import Myresume from "@/components/Myresume";
-import DisplayProjects from "@/components/projects/DisplayProjects";
-import Skills from "@/components/Skills";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Skills } from "@/components/Skills";
+import { Experience } from "@/components/Experience";
+import { Showcase } from "@/components/Showcase";
+import { Projects } from "@/components/Projects";
+import { Contact } from "@/components/Contact";
+
 export default function Home() {
   return (
-    <main>
-      <Banner />
-      <Aboutme />
-      <Myresume />
+    <>
+      <Hero />
+      <About />
       <Skills />
-      <DisplayProjects />
-      <Conatct />
-    </main>
+      <Experience />
+      <Showcase />
+      <Projects />
+      <Contact />
+    </>
   );
 }
