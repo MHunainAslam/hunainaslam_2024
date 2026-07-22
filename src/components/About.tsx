@@ -9,10 +9,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MotionButton } from "@/components/ui/MotionButton";
 
 const highlights = [
-  "3+ years shipping production React & Next.js apps",
-  "ERP systems & data-heavy business dashboards",
-  "SSR / SSG for SEO-friendly, fast-loading pages",
-  "Payment integrations with Stripe & PayPal",
+  "4+ years building production apps — ERPs, dashboards, landing pages & more",
+  "SSR / SSG for pages that load fast and rank higher",
+  "End-to-end frontend: from data-heavy ERPs to sleek marketing sites",
+  "Payment integrations with Stripe & PayPal for a smooth checkout experience",
 ];
 
 export function About() {

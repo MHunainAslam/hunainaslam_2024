@@ -5,9 +5,9 @@ export const profile = {
   phone: "+923352653956",
   phoneDisplay: "+92 335 2653956",
   email: "hunainaslam.ha@gmail.com",
-  tagline: "I build high-performance, SEO-friendly web apps that feel effortless.",
+  tagline: "From enterprise ERPs to SEO-optimized web apps, I build it fast and clean.",
   summary:
-    "Results-driven Frontend Developer with 3 years of experience building high-performance, SEO-friendly web apps using React.js and Next.js. Skilled in modern UI frameworks like Tailwind CSS and Bootstrap, with expertise in SSR/SSG and deploying apps via Vercel. Experienced in ERP systems and business dashboards.",
+    "4 years in, and I've built a bit of everything — ERPs that manage real business operations, marketing sites that need to rank and convert, dashboards packed with data, and landing pages that make a good first impression. I build with React.js and Next.js, style with Tailwind CSS and Bootstrap, and ship fast with SSR/SSG — because slow pages lose users no matter what they're for. Whether it's a billing module or a brand's homepage, my goal is the same: make it fast, make it clean, make it work.",
   links: {
     linkedin: "https://www.linkedin.com/in/hunain-aslam/",
     github: "https://github.com/hunainaslam-adalat",
@@ -16,16 +16,16 @@ export const profile = {
 };
 
 export const stats = [
-  { label: "Years Experience", value: 3, suffix: "+" },
-  { label: "Projects Shipped", value: 7, suffix: "+" },
-  { label: "Companies", value: 3, suffix: "" },
+  { label: "Years Experience", value: 4, suffix: "+" },
+  { label: "Projects Shipped", value: 20, suffix: "+" },
+  { label: "Companies", value: 5, suffix: "" },
   { label: "Core Stack", value: 15, suffix: "+" },
 ];
 
 // Companies worked with — shown as a credibility strip in the hero
 export const companies = [
-  "Adalat Group",
-  "Chroma Solution",
+  "Adalat Group - Dentalzorg",
+  "Confined Technologies",
   "Eliteblue Technology",
 ];
 

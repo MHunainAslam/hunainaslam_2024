@@ -83,9 +83,8 @@ export function SkillOrbit() {
 
           {/* rotating orbit layer */}
           <div
-            className={`absolute inset-0 animate-orbit ${
-              paused ? "[animation-play-state:paused]" : ""
-            }`}
+            className={`absolute inset-0 animate-orbit ${paused ? "[animation-play-state:paused]" : ""
+              }`}
           >
             {skillGroups.map((group, i) => {
               const a = (i / total) * Math.PI * 2 - Math.PI / 2;
@@ -108,23 +107,20 @@ export function SkillOrbit() {
                 >
                   {/* counter-rotate so the node stays upright */}
                   <div
-                    className={`h-full w-full animate-orbit-reverse ${
-                      paused ? "[animation-play-state:paused]" : ""
-                    }`}
+                    className={`h-full w-full animate-orbit-reverse ${paused ? "[animation-play-state:paused]" : ""
+                      }`}
                   >
                     <button
                       onClick={() => setActive(isActive ? null : i)}
                       aria-label={group.title}
-                      className={`group relative grid h-full w-full place-items-center rounded-2xl border bg-ink-800/90 backdrop-blur transition-all duration-300 hover:scale-110 ${
-                        isActive
-                          ? `${accent.border} ${accent.bg} ${accent.shadow} scale-110`
-                          : "border-white/10 hover:border-white/25"
-                      }`}
+                      className={`group relative grid h-full w-full place-items-center rounded-2xl border bg-ink-800/90 backdrop-blur transition-all duration-300 hover:scale-110 ${isActive
+                        ? `${accent.border} ${accent.bg} ${accent.shadow} scale-110`
+                        : "border-white/10 hover:border-white/25"
+                        }`}
                     >
                       <Icon
-                        className={`h-6 w-6 transition-colors ${
-                          isActive ? accent.text : "text-slate-300"
-                        }`}
+                        className={`h-6 w-6 transition-colors ${isActive ? accent.text : "text-slate-300"
+                          }`}
                       />
                       <span className="pointer-events-none absolute -bottom-6 left-1/2 w-max max-w-[120px] -translate-x-1/2 text-center text-[11px] font-medium leading-tight text-slate-400">
                         {group.title.split(" ")[0]}
@@ -211,7 +207,10 @@ export function SkillOrbit() {
             the hub to reset
           </>
         ) : (
-          <>Tap any node to explore that part of the stack</>
+          <>
+            <br />
+            <br />
+            Tap any node to explore that part of the stack</>
         )}
       </p>
     </div>
