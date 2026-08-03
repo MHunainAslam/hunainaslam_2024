@@ -6,7 +6,6 @@ import { companies, profile, stats } from "@/data/portfolio";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import { Typewriter } from "@/components/ui/Typewriter";
 import { MotionButton } from "@/components/ui/MotionButton";
-import { RetroGrid } from "@/components/ui/RetroGrid";
 
 const container: Variants = {
   hidden: {},
@@ -14,11 +13,10 @@ const container: Variants = {
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
@@ -33,50 +31,32 @@ export function Hero() {
     >
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-20">
-        {/* retro perspective grid, anchored to the lower half */}
-        <RetroGrid className="top-[35%]" opacity={0.5} />
+
         {/* moving color mesh */}
         <div
-          className="absolute inset-0 animate-gradient-shift opacity-[0.28] blur-[90px]"
+          className="absolute inset-0 opacity-[0.28]"
           style={{
             backgroundImage:
               "linear-gradient(115deg, #22d3ee 0%, #3b82f6 30%, #6366f1 55%, #0ea5e9 80%, #22d3ee 100%)",
             backgroundSize: "220% 220%",
           }}
         />
-        {/* floating aurora accents */}
-        <motion.div
-          className="aurora left-[8%] top-[12%] h-[360px] w-[360px] bg-accent-cyan/25"
-          animate={{ x: [0, 40, 0], y: [0, 30, 0], scale: [1, 1.12, 1] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="aurora right-[6%] top-[20%] h-[320px] w-[320px] bg-accent-indigo/25"
-          animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.15, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* vignette + noise for depth */}
+
+        {/* vignette for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,transparent,#05060a_85%)]" />
-        <div className="noise-overlay absolute inset-0" />
+
       </div>
 
       {/* Limelight spotlight — beam + cone shining down onto the content */}
-      <motion.div
+      <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, rotate: [-2.5, 2.5, -2.5] }}
-        transition={{
-          opacity: { duration: 1 },
-          rotate: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-        }}
-        style={{ transformOrigin: "top center" }}
       >
         {/* glowing emitter bar */}
         <div className="mx-auto h-[4px] w-40 rounded-full bg-accent-cyan shadow-[0_0_28px_8px_rgba(34,211,238,0.75)]" />
         {/* spotlight cone spilling downward */}
         <div className="h-[560px] w-[300px] bg-gradient-to-b from-accent-cyan/25 via-accent-cyan/[0.06] to-transparent blur-[6px] [clip-path:polygon(38%_0%,62%_0%,100%_100%,0%_100%)] sm:w-[460px]" />
-      </motion.div>
+      </div>
 
       <div className="container-px relative w-full">
         <motion.div

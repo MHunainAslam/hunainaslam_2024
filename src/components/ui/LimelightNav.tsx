@@ -58,14 +58,21 @@ export function LimelightNav({
 
   // Scroll-spy: highlight whichever section is centered in the viewport.
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const mid = window.scrollY + window.innerHeight / 2;
-      let current = 0;
-      items.forEach((item, i) => {
-        const el = document.querySelector(item.href) as HTMLElement | null;
-        if (el && el.offsetTop <= mid) current = i;
-      });
-      setActiveIndex(current);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const mid = window.scrollY + window.innerHeight / 2;
+          let current = 0;
+          items.forEach((item, i) => {
+            const el = document.querySelector(item.href) as HTMLElement | null;
+            if (el && el.offsetTop <= mid) current = i;
+          });
+          setActiveIndex(current);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });

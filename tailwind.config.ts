@@ -42,10 +42,6 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-12px)" },
         },
-        "gradient-shift": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
@@ -72,7 +68,6 @@ const config: Config = {
       },
       animation: {
         float: "float 6s ease-in-out infinite",
-        "gradient-shift": "gradient-shift 8s ease infinite",
         "pulse-slow": "pulse-slow 5s ease-in-out infinite",
         marquee: "marquee 28s linear infinite",
         orbit: "orbit 44s linear infinite",
