@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CodeCursor } from "@/components/ui/CodeCursor";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { profile } from "@/data/portfolio";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="font-sans antialiased">
+        <SmoothScroll />
         <Navbar />
         <main>{children}</main>
         <Footer />
