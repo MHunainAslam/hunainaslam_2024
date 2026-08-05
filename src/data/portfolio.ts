@@ -10,7 +10,7 @@ export const profile = {
     "4 years in, and I've built a bit of everything — ERPs that manage real business operations, marketing sites that need to rank and convert, dashboards packed with data, and landing pages that make a good first impression. I build with React.js and Next.js, style with Tailwind CSS and Bootstrap, and ship fast with SSR/SSG — because slow pages lose users no matter what they're for. Whether it's a billing module or a brand's homepage, my goal is the same: make it fast, make it clean, make it work.",
   links: {
     linkedin: "https://www.linkedin.com/in/hunain-aslam/",
-    github: "https://github.com/hunainaslam-adalat",
+    github: "https://github.com/mhunainaslam",
     portfolio: "https://hunainaslam.vercel.app/",
   },
 };
