@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Briefcase,
@@ -15,7 +16,6 @@ import {
 import { navLinks, profile } from "@/data/portfolio";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import { LimelightNav, type LimelightItem } from "@/components/ui/LimelightNav";
-import { MotionButton } from "@/components/ui/MotionButton";
 
 const menuLinks = [{ label: "Home", href: "#top" }, ...navLinks];
 
@@ -72,8 +72,15 @@ export function Navbar() {
           href="#top"
           className="group flex items-center gap-2 font-display text-lg font-bold tracking-tight"
         >
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent-gradient text-ink-950 shadow-glow">
-            HA
+          <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full shadow-glow">
+            <Image
+              src="/hunain.png"
+              alt={profile.name}
+              fill
+              sizes="36px"
+              className="object-cover"
+              priority
+            />
           </span>
           <span className="hidden text-slate-100 transition-colors group-hover:text-accent-cyan sm:block">
             {profile.name}
@@ -103,7 +110,6 @@ export function Navbar() {
           >
             <LinkedinIcon className="h-5 w-5" />
           </a>
-          <MotionButton href="#contact" label="Let's Talk" size="sm" />
         </div>
 
         <button
@@ -155,13 +161,6 @@ export function Navbar() {
                 >
                   <LinkedinIcon className="h-6 w-6" />
                 </a>
-                <MotionButton
-                  href="#contact"
-                  label="Let's Talk"
-                  size="sm"
-                  className="ml-auto"
-                  onClick={() => setOpen(false)}
-                />
               </li>
             </ul>
           </motion.div>

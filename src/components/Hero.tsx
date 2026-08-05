@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Mail } from "lucide-react";
 import { companies, profile, stats } from "@/data/portfolio";
@@ -47,126 +48,138 @@ export function Hero() {
 
       </div>
 
-      {/* Limelight spotlight — beam + cone shining down onto the content */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2"
-      >
-        {/* glowing emitter bar */}
-        <div className="mx-auto h-[4px] w-40 rounded-full bg-accent-cyan shadow-[0_0_28px_8px_rgba(34,211,238,0.75)]" />
-        {/* spotlight cone spilling downward */}
-        <div className="h-[560px] w-[300px] bg-gradient-to-b from-accent-cyan/25 via-accent-cyan/[0.06] to-transparent blur-[6px] [clip-path:polygon(38%_0%,62%_0%,100%_100%,0%_100%)] sm:w-[460px]" />
-      </div>
-
       <div className="container-px relative w-full">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="mx-auto flex max-w-3xl flex-col items-center text-center"
-        >
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
           <motion.div
-            variants={item}
-            className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 bg-accent-cyan/[0.06] px-4 py-1.5 text-sm text-accent-cyan backdrop-blur"
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="flex min-w-0 max-w-3xl flex-1 flex-col items-center text-center lg:items-start lg:text-left"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan" />
-            </span>
-            Available for new opportunities
-          </motion.div>
-
-          <motion.h1
-            variants={item}
-            className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-slate-50 sm:text-6xl md:text-7xl"
-          >
-            <Typewriter
-              text={`Hi, I'm ${profile.name}`}
-              speed={75}
-              delay={500}
-              className="text-gradient"
-              cursorClassName="bg-accent-cyan"
-            />
-          </motion.h1>
-
-          <motion.p
-            variants={item}
-            className="mt-5 text-lg text-slate-300 sm:text-xl md:text-2xl"
-          >
-            <span className="font-semibold text-slate-100">{profile.role}</span>{" "}
-            — {profile.tagline}
-          </motion.p>
-
-          <motion.p
-            variants={item}
-            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400"
-          >
-            Specializing in React, Next.js &amp; TypeScript, with a focus on
-            performance, SEO, and clean, scalable UI.
-          </motion.p>
-
-          <motion.div
-            variants={item}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
-            <MotionButton href="#projects" label="View My Work" />
-            <MotionButton
-              href="#contact"
-              label="Get in Touch"
-              variant="secondary"
-              icon={Mail}
-            />
-          </motion.div>
-
-          <motion.div
-            variants={item}
-            className="mt-8 flex items-center justify-center gap-4"
-          >
-            <a
-              href={profile.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+            <motion.div
+              variants={item}
+              className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 bg-accent-cyan/[0.06] px-4 py-1.5 text-sm text-accent-cyan backdrop-blur"
             >
-              <GithubIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={profile.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
-            >
-              <LinkedinIcon className="h-5 w-5" />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
-          </motion.div>
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan" />
+              </span>
+              Available for new opportunities
+            </motion.div>
 
-          <motion.dl
-            variants={item}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
-          >
-            {heroStats.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-x-8">
-                {i > 0 && <span className="h-8 w-px bg-white/10" />}
-                <div>
-                  <dd className="font-display text-2xl font-bold text-slate-100">
-                    {s.value}
-                    <span className="text-accent-cyan">{s.suffix}</span>
-                  </dd>
-                  <dt className="mt-0.5 text-xs text-slate-500">{s.label}</dt>
+            <motion.h1
+              variants={item}
+              className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-slate-50 sm:text-6xl md:text-7xl"
+            >
+              <Typewriter
+                text={`Hi, I'm ${profile.name}`}
+                speed={75}
+                delay={500}
+                className="text-gradient"
+                cursorClassName="bg-accent-cyan"
+              />
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="mt-5 text-lg text-slate-300 sm:text-xl md:text-2xl"
+            >
+              <span className="font-semibold text-slate-100">{profile.role}</span>{" "}
+              — {profile.tagline}
+            </motion.p>
+
+            <motion.p
+              variants={item}
+              className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400 lg:mx-0"
+            >
+              Specializing in React, Next.js &amp; TypeScript, with a focus on
+              performance, SEO, and clean, scalable UI.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+            >
+              <MotionButton href="#projects" label="View My Work" />
+              <MotionButton
+                href="#contact"
+                label="Get in Touch"
+                variant="secondary"
+                icon={Mail}
+              />
+            </motion.div>
+
+            <motion.div
+              variants={item}
+              className="mt-8 flex items-center justify-center gap-4 lg:justify-start"
+            >
+              <a
+                href={profile.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              >
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a
+                href={profile.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              >
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label="Email"
+                className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </motion.div>
+
+            <motion.dl
+              variants={item}
+              className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start"
+            >
+              {heroStats.map((s, i) => (
+                <div key={s.label} className="flex items-center gap-x-8">
+                  {i > 0 && <span className="h-8 w-px bg-white/10" />}
+                  <div>
+                    <dd className="font-display text-2xl font-bold text-slate-100">
+                      {s.value}
+                      <span className="text-accent-cyan">{s.suffix}</span>
+                    </dd>
+                    <dt className="mt-0.5 text-xs text-slate-500">{s.label}</dt>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </motion.dl>
-        </motion.div>
+              ))}
+            </motion.dl>
+          </motion.div>
+
+          {/* 3D illustration — right side, large screens only */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden shrink-0 lg:block"
+          >
+            <div className="relative h-[280px] w-[280px] animate-float xl:h-[340px] xl:w-[340px]">
+              <div className="absolute inset-0 rounded-full bg-accent-cyan/10 blur-3xl" />
+              <Image
+                src="/programming-developer-working-on-project-3d-icon-png-download-10193069.webp"
+                alt=""
+                fill
+                sizes="(min-width: 1280px) 340px, 280px"
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
 
         {/* company strip */}
         <motion.div
