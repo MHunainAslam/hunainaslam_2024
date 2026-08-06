@@ -92,19 +92,47 @@ export function Contact() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>();
   const [sent, setSent] = useState(false);
+  const [failed, setFailed] = useState(false);
 
-  const onSubmit = handleSubmit((data) => {
-    // No backend wired yet — open the user's mail client as a graceful fallback.
-    const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`);
-    const body = encodeURIComponent(
-      `${data.message}\n\n— ${data.name}\n${data.email}${
-        data.phone ? `\n${data.phone}` : ""
-      }`,
-    );
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setSent(true);
-    reset();
-    setTimeout(() => setSent(false), 4000);
+  const onSubmit = handleSubmit(async (data) => {
+    setFailed(false);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `Portfolio enquiry from ${data.name}`,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+        }),
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        setSent(true);
+        reset();
+        setTimeout(() => setSent(false), 4000);
+        return;
+      }
+      throw new Error(result.message ?? "Submission failed");
+    } catch {
+      // Web3Forms unreachable — fall back to the user's mail client.
+      const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`);
+      const body = encodeURIComponent(
+        `${data.message}\n\n— ${data.name}\n${data.email}${
+          data.phone ? `\n${data.phone}` : ""
+        }`,
+      );
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      setFailed(true);
+      setTimeout(() => setFailed(false), 4000);
+    }
   });
 
   const field =
@@ -264,13 +292,21 @@ export function Contact() {
                 <MotionButton
                   type="submit"
                   disabled={isSubmitting}
-                  label={sent ? "Opening your mail client…" : "Send Message"}
+                  label={
+                    sent
+                      ? "Message sent!"
+                      : failed
+                        ? "Opening your mail client…"
+                        : isSubmitting
+                          ? "Sending…"
+                          : "Send Message"
+                  }
                   icon={sent ? Check : Send}
                   className="w-full"
                 />
                 <p className="text-center text-xs text-slate-500">
-                  This opens your email client pre-filled — or email me directly
-                  at <span className="text-accent-cyan">{profile.email}</span>.
+                  Sent straight to my inbox — or email me directly at{" "}
+                  <span className="text-accent-cyan">{profile.email}</span>.
                 </p>
               </form>
             </div>
