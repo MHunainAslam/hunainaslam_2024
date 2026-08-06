@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Mail } from "lucide-react";
 import { companies, profile, stats } from "@/data/portfolio";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
@@ -24,7 +25,48 @@ const item: Variants = {
 
 const heroStats = stats.slice(0, 3);
 
+// front → 3/4 → side → 3/4-back → back
+const heroFrames = [
+  "/hero-frame-1.png",
+  "/hero-frame-2.png",
+  "/hero-frame-3.png",
+  "/hero-frame-4.png",
+  "/hero-frame-5.png",
+];
+
+function useDirectionalFrame() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [frame, setFrame] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const dx = (e.clientX - cx) / (window.innerWidth / 2);
+      const clamped = Math.max(-1, Math.min(1, dx));
+      const abs = Math.abs(clamped);
+
+      // capped at the side profile — never turns to 3/4-back or back
+      let index = 0;
+      if (abs > 0.5) index = 2;
+      else if (abs > 0.1) index = 1;
+
+      setFrame(index);
+      setFlipped(clamped > 0);
+    };
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, []);
+
+  return { ref, frame, flipped };
+}
+
 export function Hero() {
+  const { ref: heroRef, frame, flipped } = useDirectionalFrame();
+
   return (
     <section
       id="top"
@@ -167,16 +209,31 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="hidden shrink-0 lg:block"
           >
-            <div className="relative h-[280px] w-[280px] animate-float xl:h-[340px] xl:w-[340px]">
+            <div
+              ref={heroRef}
+              className="relative h-[360px] w-[360px] xl:h-[440px] xl:w-[440px]"
+            >
               <div className="absolute inset-0 rounded-full bg-accent-cyan/10 blur-3xl" />
-              <Image
-                src="/programming-developer-working-on-project-3d-icon-png-download-10193069.webp"
-                alt=""
-                fill
-                sizes="(min-width: 1280px) 340px, 280px"
-                className="object-contain drop-shadow-2xl"
-                priority
-              />
+              <AnimatePresence>
+                <motion.div
+                  key={`${frame}-${flipped}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute inset-0"
+                  style={{ transform: flipped ? "scaleX(-1)" : undefined }}
+                >
+                  <Image
+                    src={heroFrames[frame]}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1280px) 440px, 360px"
+                    className="object-contain drop-shadow-2xl"
+                    priority={frame === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
