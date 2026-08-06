@@ -9,10 +9,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MotionButton } from "@/components/ui/MotionButton";
 
 const highlights = [
-  "4+ years building production apps — ERPs, dashboards, landing pages & more",
-  "SSR / SSG for pages that load fast and rank higher",
-  "End-to-end frontend: from data-heavy ERPs to sleek marketing sites",
-  "Payment integrations with Stripe & PayPal for a smooth checkout experience",
+  "4+ years of experience delivering production applications, including ERPs, dashboards, and landing pages",
+  "SSR/SSG implementation for fast-loading, SEO-optimized pages",
+  "End-to-end frontend development, from data-intensive ERPs to polished marketing websites",
+  "Payment gateway integration with Stripe and PayPal for seamless checkout experiences",
 ];
 
 export function About() {
@@ -50,9 +50,9 @@ export function About() {
                 className="glass-card absolute -bottom-5 -right-4 flex items-center gap-2 px-4 py-2.5 shadow-card"
               >
                 <Zap className="h-4 w-4 text-accent-cyan" />
-                <span className="text-sm font-semibold text-slate-100">
+                {/* <span className="text-sm font-semibold text-slate-100">
                   Open to work
-                </span>
+                </span> */}
               </motion.div>
             </div>
           </Reveal>
@@ -111,7 +111,7 @@ export function About() {
                   href={profile.links.portfolio}
                   target="_blank"
                   rel="noopener noreferrer"
-                  label="View Résumé"
+                  label="View Resume"
                   icon={Download}
                 />
                 <span className="inline-flex items-center gap-1.5 text-sm text-slate-400">

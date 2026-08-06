@@ -42,7 +42,14 @@ const VARIANTS: Record<Variant, { circle: string; arrow: string }> = {
 
 const SIZES: Record<
   Size,
-  { wrap: string; circle: string; arrowPos: string; arrow: string; text: string }
+  {
+    wrap: string;
+    circle: string;
+    arrowPos: string;
+    arrow: string;
+    text: string;
+    gutter: string;
+  }
 > = {
   md: {
     wrap: "h-14 px-14 text-base",
@@ -50,6 +57,7 @@ const SIZES: Record<
     arrowPos: "left-[1.125rem]",
     arrow: "h-5 w-5",
     text: "text-base",
+    gutter: "3.25rem",
   },
   sm: {
     wrap: "h-11 px-11 text-sm",
@@ -57,6 +65,7 @@ const SIZES: Record<
     arrowPos: "left-[0.875rem]",
     arrow: "h-4 w-4",
     text: "text-sm",
+    gutter: "2.5rem",
   },
 };
 
@@ -75,10 +84,14 @@ export function MotionButton({
   const s = SIZES[size];
 
   const wrapper = cx(
-    "group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/10 bg-ink-900/60 font-medium text-slate-100 outline-none transition-transform duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
+    "group relative grid items-center overflow-hidden rounded-full border border-white/10 bg-ink-900/60 font-medium text-slate-100 outline-none transition-transform duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
     s.wrap,
     className,
   );
+
+  const gridStyle = {
+    gridTemplateColumns: `${s.gutter} 1fr ${s.gutter}`,
+  };
 
   const inner = (
     <>
@@ -104,7 +117,7 @@ export function MotionButton({
       {/* label */}
       <span
         className={cx(
-          "relative z-10 whitespace-nowrap transition-colors duration-500 group-hover:text-ink-950",
+          "relative z-10 col-start-2 justify-self-center whitespace-nowrap transition-colors duration-500 group-hover:text-ink-950",
           s.text,
         )}
       >
@@ -124,6 +137,7 @@ export function MotionButton({
         rel={rel}
         onClick={onClick}
         className={wrapper}
+        style={gridStyle}
       >
         {inner}
       </a>
@@ -137,6 +151,7 @@ export function MotionButton({
       disabled={disabled}
       onClick={onClick}
       className={wrapper}
+      style={gridStyle}
     >
       {inner}
     </button>

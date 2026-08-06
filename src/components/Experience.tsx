@@ -12,7 +12,7 @@ export function Experience() {
         <SectionHeading
           eyebrow="Career"
           title="Experience Timeline"
-          description="Three years of steady growth — from intern to senior engineer leading product-critical work."
+          description="Four years of steady growth — from intern to senior engineer leading product-critical work."
         />
 
         <div className="relative mx-auto mt-16 max-w-3xl">

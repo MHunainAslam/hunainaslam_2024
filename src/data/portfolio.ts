@@ -5,9 +5,9 @@ export const profile = {
   phone: "+923352653956",
   phoneDisplay: "+92 335 2653956",
   email: "hunainaslam.ha@gmail.com",
-  tagline: "From enterprise ERPs to SEO-optimized web apps, I build it fast and clean.",
+  tagline: "I build fast, clean web apps, from enterprise ERPs to SEO-optimized products.",
   summary:
-    "4 years in, and I've built a bit of everything — ERPs that manage real business operations, marketing sites that need to rank and convert, dashboards packed with data, and landing pages that make a good first impression. I build with React.js and Next.js, style with Tailwind CSS and Bootstrap, and ship fast with SSR/SSG — because slow pages lose users no matter what they're for. Whether it's a billing module or a brand's homepage, my goal is the same: make it fast, make it clean, make it work.",
+    "With 4 years of experience, I've delivered production-grade applications across a range of domains — enterprise ERPs, data-rich dashboards, and marketing sites built to rank and convert. I work primarily with React.js and Next.js, style with Tailwind CSS and Bootstrap, and prioritize SSR/SSG to ensure fast, SEO-friendly performance. Whether the project is an internal business tool or a customer-facing product, my focus stays the same: clean code, strong performance, and a polished user experience.",
   links: {
     linkedin: "https://www.linkedin.com/in/hunain-aslam/",
     github: "https://github.com/mhunainaslam",
@@ -49,7 +49,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "API & Data Handling",
     icon: "server",
-    skills: ["Axios", "REST APIs", "Pusher"],
+    skills: ["Axios", "REST APIs", "React Query", "Pusher"],
   },
   {
     title: "Payment Gateways",

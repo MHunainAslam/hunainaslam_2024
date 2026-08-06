@@ -56,7 +56,7 @@ export function Hero() {
             animate="show"
             className="flex min-w-0 max-w-3xl flex-1 flex-col items-center text-center lg:items-start lg:text-left"
           >
-            <motion.div
+            {/* <motion.div
               variants={item}
               className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 bg-accent-cyan/[0.06] px-4 py-1.5 text-sm text-accent-cyan backdrop-blur"
             >
@@ -65,7 +65,7 @@ export function Hero() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan" />
               </span>
               Available for new opportunities
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
               variants={item}
@@ -92,8 +92,8 @@ export function Hero() {
               variants={item}
               className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400 lg:mx-0"
             >
-              Specializing in React, Next.js &amp; TypeScript, with a focus on
-              performance, SEO, and clean, scalable UI.
+              React, Next.js &amp; TypeScript specialist, focused on performance
+              and scalable UI.
             </motion.p>
 
             <motion.div

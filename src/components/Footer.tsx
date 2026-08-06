@@ -4,7 +4,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] py-12">
+    <footer className="relative border-t border-white/[0.06] py-6">
       <div className="container-px">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row md:items-start">
           <div className="text-center md:text-left">
@@ -62,8 +62,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/[0.06] pt-6 text-center text-xs text-slate-500">
-          © {new Date().getFullYear()} {profile.name}. Built with Next.js,
-          TypeScript, Tailwind CSS &amp; Framer Motion.
+          © {new Date().getFullYear()} {profile.name}.
         </div>
       </div>
     </footer>
