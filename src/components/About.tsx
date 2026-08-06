@@ -24,9 +24,9 @@ export function About() {
           title="Turning complex products into clean, fast interfaces"
         />
 
-        <div className="mt-14 grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-14 grid items-start gap-10 lg:grid-cols-12">
           {/* Photo / avatar card */}
-          <Reveal className="mx-auto w-full max-w-sm">
+          <Reveal className="mx-auto w-full max-w-sm xxl:col-span-3 col-span-4 xxl:max-w-none">
             <div className="group relative">
               <div className="absolute -inset-1 rounded-3xl bg-accent-gradient opacity-30 blur-lg transition-opacity duration-500 group-hover:opacity-60" />
               <div className="glass-card relative overflow-hidden rounded-3xl p-1">
@@ -58,7 +58,7 @@ export function About() {
           </Reveal>
 
           {/* Text */}
-          <div>
+          <div className="lg:col-start-5 lg:col-span-8">
             <Reveal delay={0.1}>
               <p className="text-lg leading-relaxed text-slate-300">
                 {profile.summary}
@@ -108,7 +108,7 @@ export function About() {
             <Reveal delay={0.4}>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <MotionButton
-                  href={profile.links.portfolio}
+                  href="/Hunain%20Aslam%20Frontend%20Developer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   label="View Resume"

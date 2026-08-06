@@ -24,6 +24,7 @@ type AsAnchor = BaseProps & {
   href: string;
   target?: string;
   rel?: string;
+  download?: boolean | string;
 };
 
 type AsButton = BaseProps & {
@@ -129,12 +130,13 @@ export function MotionButton({
   const { onClick } = rest;
 
   if ("href" in rest && rest.href !== undefined) {
-    const { href, target, rel } = rest;
+    const { href, target, rel, download } = rest;
     return (
       <a
         href={href}
         target={target}
         rel={rel}
+        download={download}
         onClick={onClick}
         className={wrapper}
         style={gridStyle}

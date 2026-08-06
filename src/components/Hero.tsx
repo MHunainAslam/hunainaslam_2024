@@ -90,13 +90,13 @@ export function Hero() {
 
       </div>
 
-      <div className="container-px relative w-full">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="container-px relative">
+          <div className="mt-14 grid items-start gap-10 lg:grid-cols-12">
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="flex min-w-0 max-w-3xl flex-1 flex-col items-center text-center lg:items-start lg:text-left"
+            className="flex min-w-0 flex-1 flex-col items-center text-center lg:col-span-8 lg:items-start lg:text-left"
           >
             {/* <motion.div
               variants={item}
@@ -207,7 +207,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden shrink-0 lg:block"
+            className="hidden lg:col-span-4 lg:flex lg:justify-end"
           >
             <div
               ref={heroRef}
