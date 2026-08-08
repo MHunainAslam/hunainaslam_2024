@@ -75,7 +75,7 @@ function ShowcaseCard({ p, hero }: { p: Project; hero: boolean }) {
           alt={`${p.title} preview`}
           fill
           sizes={hero ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 1024px) 50vw, 33vw"}
-          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+          className="object-cover object-top transition-[object-position] duration-[6000ms] ease-linear group-hover:object-bottom"
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-ink-700 to-ink-950">

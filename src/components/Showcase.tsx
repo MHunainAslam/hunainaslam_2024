@@ -26,11 +26,11 @@ export function Showcase() {
         }
       >
         <Image
-          src="/projects/dentalzorg-erp.png"
+          src="/projects/adalatdentalerp.png"
           alt="Dentalzorg ERP analytics dashboard"
           fill
           sizes="(max-width: 1024px) 100vw, 1024px"
-          className="object-cover object-left-top"
+          className="object-cover object-top transition-[object-position] duration-[6000ms] ease-linear hover:object-bottom"
           priority
         />
       </ContainerScroll>

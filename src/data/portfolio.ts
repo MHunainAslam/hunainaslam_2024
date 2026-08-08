@@ -145,24 +145,13 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Dentalzorg ERP System",
-    category: "ERP Platform",
-    description:
-      "An end-to-end ERP platform for managing dental clinic operations — scheduling, billing, patient records, and real-time updates.",
-    stack: ["Next.js", "Tailwind CSS", "Redux", "Pusher", "REST APIs"],
-    link: "#",
-    image: "/projects/dentalzorg-erp.png",
-    featured: true,
-    accent: "cyan",
-  },
-  {
     title: "Dentalzorg Dental Clinic",
     category: "Marketing Website",
     description:
       "An SEO-friendly clinic website with online appointment booking and server-side rendering for fast, discoverable pages.",
     stack: ["Next.js", "Bootstrap", "REST APIs", "SSR"],
     link: "#",
-    image: "/projects/dentalzorg-clinic.png",
+    image: "/projects/dentalzorg.png",
     featured: true,
     accent: "blue",
   },
@@ -184,7 +173,7 @@ export const projects: Project[] = [
       "A business networking platform with paid memberships and full event management, powered by Stripe payments.",
     stack: ["Next.js", "Bootstrap", "Stripe"],
     link: "#",
-    image: "/projects/eobusiness-club.png",
+    image: "/projects/eobusinessclub-web.png",
     accent: "cyan",
   },
   {
@@ -194,7 +183,7 @@ export const projects: Project[] = [
       "A multiplayer online game featuring real-time player interactions and a responsive, playful interface.",
     stack: ["Next.js", "Bootstrap"],
     link: "#",
-    image: "/projects/mythya.png",
+    image: "/projects/mythya-web.png",
     accent: "indigo",
   },
   {
@@ -213,7 +202,18 @@ export const projects: Project[] = [
       "A bold, animated landing page for a meme-based cryptocurrency project with strong visual identity.",
     stack: ["Next.js", "TypeScript", "Bootstrap"],
     link: "#",
+    image: "/projects/samuraidogg.png",
     accent: "cyan",
+  },
+  {
+    title: "Eliteblue Technology",
+    category: "Software House Website",
+    description:
+      "The corporate website for Eliteblue Technology, a software house — showcasing services, portfolio, and company profile.",
+    stack: ["React.js", "Bootstrap"],
+    link: "#",
+    image: "/projects/eliteblue-technology.png",
+    accent: "blue",
   },
 ];
 
