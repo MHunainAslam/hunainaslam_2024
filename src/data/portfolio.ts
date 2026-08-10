@@ -167,15 +167,16 @@ export const projects: Project[] = [
     accent: "indigo",
   },
   {
-    title: "Eobusiness Club",
-    category: "Networking Platform",
+    title: "Eobusiness Dashboard",
+    category: "Admin Dashboard",
     description:
-      "A business networking platform with paid memberships and full event management, powered by Stripe payments.",
-    stack: ["Next.js", "Bootstrap", "Stripe"],
+      "An admin dashboard for managing memberships, vendors, event registrations, and users at a glance.",
+    stack: ["React.js", "Bootstrap"],
+    image: "/projects/eobusiness-club.png",
     link: "#",
-    image: "/projects/eobusinessclub-web.png",
-    accent: "cyan",
+    accent: "blue",
   },
+
   {
     title: "Mythya Game",
     category: "Realtime Multiplayer",
@@ -187,14 +188,14 @@ export const projects: Project[] = [
     accent: "indigo",
   },
   {
-    title: "Eobusiness Dashboard",
-    category: "Admin Dashboard",
+    title: "Eobusiness Club",
+    category: "Networking Platform",
     description:
-    "An admin dashboard for managing memberships, vendors, event registrations, and users at a glance.",
-    stack: ["React.js", "Bootstrap"],
-    image: "/projects/eobusiness-club.png",
+      "A business networking platform with paid memberships and full event management, powered by Stripe payments.",
+    stack: ["Next.js", "Bootstrap", "Stripe"],
     link: "#",
-    accent: "blue",
+    image: "/projects/eobusinessclub-web.png",
+    accent: "cyan",
   },
   {
     title: "Samurai Dogg — Meme Coin",
@@ -206,6 +207,7 @@ export const projects: Project[] = [
     image: "/projects/samuraidogg.png",
     accent: "cyan",
   },
+
 ];
 
 export const navLinks = [
