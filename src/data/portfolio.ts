@@ -190,8 +190,9 @@ export const projects: Project[] = [
     title: "Eobusiness Dashboard",
     category: "Admin Dashboard",
     description:
-      "An admin dashboard for managing memberships, vendors, event registrations, and users at a glance.",
+    "An admin dashboard for managing memberships, vendors, event registrations, and users at a glance.",
     stack: ["React.js", "Bootstrap"],
+    image: "/projects/eobusiness-club.png",
     link: "#",
     accent: "blue",
   },
@@ -204,16 +205,6 @@ export const projects: Project[] = [
     link: "#",
     image: "/projects/samuraidogg.png",
     accent: "cyan",
-  },
-  {
-    title: "Eliteblue Technology",
-    category: "Software House Website",
-    description:
-      "The corporate website for Eliteblue Technology, a software house — showcasing services, portfolio, and company profile.",
-    stack: ["React.js", "Bootstrap"],
-    link: "#",
-    image: "/projects/eliteblue-technology.png",
-    accent: "blue",
   },
 ];
 
