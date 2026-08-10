@@ -25,14 +25,8 @@ const item: Variants = {
 
 const heroStats = stats.slice(0, 3);
 
-// front → 3/4 → side → 3/4-back → back
-const heroFrames = [
-  "/hero-frame-1.png",
-  "/hero-frame-2.png",
-  "/hero-frame-3.png",
-  "/hero-frame-4.png",
-  "/hero-frame-5.png",
-];
+// front → 3/4 turn only — never reaches the full side/back profile
+const heroFrames = ["/hero-frame-1.png", "/hero-frame-2.png"];
 
 function useDirectionalFrame() {
   const ref = useRef<HTMLDivElement>(null);
@@ -49,10 +43,8 @@ function useDirectionalFrame() {
       const clamped = Math.max(-1, Math.min(1, dx));
       const abs = Math.abs(clamped);
 
-      // capped at the side profile — never turns to 3/4-back or back
-      let index = 0;
-      if (abs > 0.5) index = 2;
-      else if (abs > 0.1) index = 1;
+      // capped at the subtle 3/4 turn — never turns to a full left/right profile
+      const index = abs > 0.1 ? 1 : 0;
 
       setFrame(index);
       setFlipped(clamped > 0);

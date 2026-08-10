@@ -150,7 +150,7 @@ export const projects: Project[] = [
     description:
       "An SEO-friendly clinic website with online appointment booking and server-side rendering for fast, discoverable pages.",
     stack: ["Next.js", "Bootstrap", "REST APIs", "SSR"],
-    link: "#",
+    link: "https://dentalzorg.com/",
     image: "/projects/dentalzorg.png",
     featured: true,
     accent: "blue",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     description:
       "A corporate website for an international eSIM telecom provider with integrated PayPal and Stripe checkout flows.",
     stack: ["Next.js", "Bootstrap", "REST APIs", "PayPal", "Stripe"],
-    link: "#",
+    link: "https://www.etijwaal.com/",
     image: "/projects/tijwaal-esim.png",
     featured: true,
     accent: "indigo",
@@ -173,7 +173,7 @@ export const projects: Project[] = [
       "An admin dashboard for managing memberships, vendors, event registrations, and users at a glance.",
     stack: ["React.js", "Bootstrap"],
     image: "/projects/eobusiness-club.png",
-    link: "#",
+    link: "https://eobusinessclub.com/adminpanel",
     accent: "blue",
   },
 
@@ -183,7 +183,7 @@ export const projects: Project[] = [
     description:
       "A multiplayer online game featuring real-time player interactions and a responsive, playful interface.",
     stack: ["Next.js", "Bootstrap"],
-    link: "#",
+    link: "http://mythya.vercel.app/",
     image: "/projects/mythya-web.png",
     accent: "indigo",
   },
@@ -193,7 +193,7 @@ export const projects: Project[] = [
     description:
       "A business networking platform with paid memberships and full event management, powered by Stripe payments.",
     stack: ["Next.js", "Bootstrap", "Stripe"],
-    link: "#",
+    link: "https://eobusinessclub.com/",
     image: "/projects/eobusinessclub-web.png",
     accent: "cyan",
   },
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     description:
       "A bold, animated landing page for a meme-based cryptocurrency project with strong visual identity.",
     stack: ["Next.js", "TypeScript", "Bootstrap"],
-    link: "#",
+    link: "https://samuraidog.vercel.app/",
     image: "/projects/samuraidogg.png",
     accent: "cyan",
   },
