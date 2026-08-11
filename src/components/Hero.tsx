@@ -14,6 +14,14 @@ const container: Variants = {
   show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 };
 
+// The copy is split into two grid blocks so the illustration can sit between
+// them on mobile; this keeps the second block's stagger running on from where
+// the first one ends instead of restarting alongside it.
+const containerLate: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.35 } },
+};
+
 const item: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: {
@@ -62,11 +70,10 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-16"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pb-16 pt-24 sm:pt-28"
     >
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-20">
-
         {/* moving color mesh */}
         <div
           className="absolute inset-0 opacity-[0.28]"
@@ -79,16 +86,16 @@ export function Hero() {
 
         {/* vignette for depth */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,transparent,#05060a_85%)]" />
-
       </div>
 
-        <div className="container-px relative">
-          <div className="mt-14 grid items-start gap-10 lg:grid-cols-12">
+      <div className="container-px relative">
+        <div className="mt-6 grid grid-cols-1 items-start gap-6 sm:mt-14 sm:gap-10 lg:grid-cols-12">
+          {/* Copy, part 1 — headline through the summary line */}
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="flex min-w-0 flex-1 flex-col items-center text-center lg:col-span-8 lg:items-start lg:text-left"
+            className="flex min-w-0 flex-col items-center text-center lg:col-span-8 lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left"
           >
             {/* <motion.div
               variants={item}
@@ -103,7 +110,7 @@ export function Hero() {
 
             <motion.h1
               variants={item}
-              className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-slate-50 sm:text-6xl md:text-7xl"
+              className="mt-6 font-display text-[clamp(2rem,9vw,2.5rem)] font-bold leading-[1.08] tracking-tight text-slate-50 sm:text-6xl md:text-7xl"
             >
               <Typewriter
                 text={`Hi, I'm ${profile.name}`}
@@ -118,7 +125,9 @@ export function Hero() {
               variants={item}
               className="mt-5 text-lg text-slate-300 sm:text-xl md:text-2xl"
             >
-              <span className="font-semibold text-slate-100">{profile.role}</span>{" "}
+              <span className="font-semibold text-slate-100">
+                {profile.role}
+              </span>{" "}
               — {profile.tagline}
             </motion.p>
 
@@ -129,17 +138,67 @@ export function Hero() {
               React, Next.js &amp; TypeScript specialist, focused on performance
               and scalable UI.
             </motion.p>
+          </motion.div>
 
+          {/* 3D illustration — between the copy and the buttons on phones,
+              right-hand column spanning both copy blocks from lg up */}
+          <motion.div
+            aria-hidden
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:justify-end"
+          >
+            <div
+              ref={heroRef}
+              className="relative h-[200px] w-[200px] sm:h-[260px] sm:w-[260px] lg:h-[360px] lg:w-[360px] xl:h-[440px] xl:w-[440px]"
+            >
+              <div className="absolute inset-0 rounded-full bg-accent-cyan/10 blur-3xl" />
+              <AnimatePresence>
+                <motion.div
+                  key={`${frame}-${flipped}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute inset-0"
+                  style={{ transform: flipped ? "scaleX(-1)" : undefined }}
+                >
+                  <Image
+                    src={heroFrames[frame]}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1280px) 440px, (min-width: 1024px) 360px, (min-width: 640px) 260px, 200px"
+                    className="object-contain drop-shadow-2xl"
+                    priority={frame === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
+          {/* Copy, part 2 — CTAs, socials and stats */}
+          <motion.div
+            variants={containerLate}
+            initial="hidden"
+            animate="show"
+            className="flex min-w-0 flex-col items-center text-center lg:col-span-8 lg:col-start-1 lg:row-start-2 lg:items-start lg:text-left"
+          >
             <motion.div
               variants={item}
-              className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+              className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start"
             >
-              <MotionButton href="#projects" label="View My Work" />
+              <MotionButton
+                href="#projects"
+                label="View My Work"
+                className="w-full sm:w-auto"
+              />
               <MotionButton
                 href="#contact"
                 label="Get in Touch"
                 variant="secondary"
                 icon={Mail}
+                className="w-full sm:w-auto"
               />
             </motion.div>
 
@@ -176,11 +235,18 @@ export function Hero() {
 
             <motion.dl
               variants={item}
-              className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start"
+              className="mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 sm:gap-x-8 lg:justify-start"
             >
               {heroStats.map((s, i) => (
-                <div key={s.label} className="flex items-center gap-x-8">
-                  {i > 0 && <span className="h-8 w-px bg-white/10" />}
+                <div
+                  key={s.label}
+                  className="flex items-center gap-x-5 sm:gap-x-8"
+                >
+                  {/* hidden on the narrowest screens, where the stats wrap and
+                      the divider would be left stranded on its own row */}
+                  {i > 0 && (
+                    <span className="hidden h-8 w-px bg-white/10 sm:block" />
+                  )}
                   <div>
                     <dd className="font-display text-2xl font-bold text-slate-100">
                       {s.value}
@@ -191,42 +257,6 @@ export function Hero() {
                 </div>
               ))}
             </motion.dl>
-          </motion.div>
-
-          {/* 3D illustration — right side, large screens only */}
-          <motion.div
-            aria-hidden
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:col-span-4 lg:flex lg:justify-end"
-          >
-            <div
-              ref={heroRef}
-              className="relative h-[360px] w-[360px] xl:h-[440px] xl:w-[440px]"
-            >
-              <div className="absolute inset-0 rounded-full bg-accent-cyan/10 blur-3xl" />
-              <AnimatePresence>
-                <motion.div
-                  key={`${frame}-${flipped}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute inset-0"
-                  style={{ transform: flipped ? "scaleX(-1)" : undefined }}
-                >
-                  <Image
-                    src={heroFrames[frame]}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1280px) 440px, 360px"
-                    className="object-contain drop-shadow-2xl"
-                    priority={frame === 0}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
           </motion.div>
         </div>
 
@@ -240,7 +270,7 @@ export function Hero() {
           <p className="text-center text-xs uppercase tracking-[0.25em] text-slate-500">
             Experience across
           </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10">
             {companies.map((c) => (
               <span
                 key={c}

@@ -12,6 +12,8 @@
 
 html {
   scroll-padding-top: 5rem;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 html.lenis,
@@ -39,6 +41,11 @@ body {
   overflow-x: hidden;
 }
 
+svg,
+canvas {
+  max-width: 100%;
+}
+
 /* Custom selection */
 ::selection {
   background: rgba(45, 212, 191, 0.3);
@@ -59,8 +66,9 @@ body {
 }
 
 @layer components {
+  /* Fluid on phones/tablets; keeps the narrow 3/4 look only on wide screens. */
   .container-px {
-    @apply mx-auto w-3/4 px-6 sm:px-8;
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 xl:w-3/4 xl:max-w-none;
   }
 
   .text-gradient {

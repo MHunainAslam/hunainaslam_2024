@@ -120,10 +120,12 @@ function ShowcaseCard({ p, hero }: { p: Project; hero: boolean }) {
 
         {/* description + tags: always shown on hero, revealed on hover for the rest */}
         <div
+          // Touch devices have no hover, so the details stay visible there and
+          // only collapse into the hover reveal from lg up.
           className={
             hero
               ? "mt-2"
-              : "grid grid-rows-[0fr] opacity-0 transition-all duration-500 group-hover:mt-2 group-hover:grid-rows-[1fr] group-hover:opacity-100"
+              : "mt-2 lg:mt-0 lg:grid lg:grid-rows-[0fr] lg:opacity-0 lg:transition-all lg:duration-500 lg:group-hover:mt-2 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100"
           }
         >
           <div className="overflow-hidden">

@@ -49,24 +49,24 @@ const SIZES: Record<
     arrowPos: string;
     arrow: string;
     text: string;
-    gutter: string;
   }
 > = {
+  // Horizontal padding must clear the circle (its right edge sits at
+  // left-1 + diameter), otherwise the centred label butts right up against the
+  // icon on narrow, content-width buttons.
   md: {
-    wrap: "h-14 px-14 text-base",
-    circle: "left-1 top-1 h-12 w-12",
-    arrowPos: "left-[1.125rem]",
-    arrow: "h-5 w-5",
-    text: "text-base",
-    gutter: "3.25rem",
+    wrap: "h-12 px-[3.25rem] sm:h-14 sm:px-14",
+    circle: "left-1 top-1 h-10 w-10 sm:h-12 sm:w-12",
+    arrowPos: "left-4 sm:left-[1.125rem]",
+    arrow: "h-4 w-4 sm:h-5 sm:w-5",
+    text: "text-sm sm:text-base",
   },
   sm: {
-    wrap: "h-11 px-11 text-sm",
+    wrap: "h-11 px-11",
     circle: "left-1 top-1 h-9 w-9",
     arrowPos: "left-[0.875rem]",
     arrow: "h-4 w-4",
     text: "text-sm",
-    gutter: "2.5rem",
   },
 };
 
@@ -85,14 +85,10 @@ export function MotionButton({
   const s = SIZES[size];
 
   const wrapper = cx(
-    "group relative grid items-center overflow-hidden rounded-full border border-white/10 bg-ink-900/60 font-medium text-slate-100 outline-none transition-transform duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
+    "group relative flex max-w-full items-center justify-center overflow-hidden rounded-full border border-white/10 bg-ink-900/60 font-medium text-slate-100 outline-none transition-transform duration-200 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
     s.wrap,
     className,
   );
-
-  const gridStyle = {
-    gridTemplateColumns: `${s.gutter} 1fr ${s.gutter}`,
-  };
 
   const inner = (
     <>
@@ -118,7 +114,7 @@ export function MotionButton({
       {/* label */}
       <span
         className={cx(
-          "relative z-10 col-start-2 justify-self-center whitespace-nowrap transition-colors duration-500 group-hover:text-ink-950",
+          "relative z-10 whitespace-nowrap transition-colors duration-500 group-hover:text-ink-950",
           s.text,
         )}
       >
@@ -139,7 +135,6 @@ export function MotionButton({
         download={download}
         onClick={onClick}
         className={wrapper}
-        style={gridStyle}
       >
         {inner}
       </a>
@@ -153,7 +148,6 @@ export function MotionButton({
       disabled={disabled}
       onClick={onClick}
       className={wrapper}
-      style={gridStyle}
     >
       {inner}
     </button>

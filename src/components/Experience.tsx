@@ -16,8 +16,9 @@ export function Experience() {
         />
 
         <div className="relative mx-auto mt-16 max-w-3xl">
-          {/* vertical line — left rail on mobile, centred on desktop */}
-          <div className="absolute left-[19px] top-2 h-full w-px bg-gradient-to-b from-accent-cyan/60 via-accent-blue/40 to-transparent sm:left-1/2 sm:-translate-x-1/2" />
+          {/* vertical line — left rail up to tablet, centred from lg up, where
+              there is finally room for two readable columns */}
+          <div className="absolute left-[19px] top-2 h-full w-px bg-gradient-to-b from-accent-cyan/60 via-accent-blue/40 to-transparent lg:left-1/2 lg:-translate-x-1/2" />
 
           <div className="space-y-10">
             {experiences.map((exp, i) => {
@@ -29,16 +30,16 @@ export function Experience() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative pl-14 sm:w-1/2 sm:pl-0 ${
-                    left ? "sm:pr-12 sm:text-right" : "sm:ml-auto sm:pl-12"
+                  className={`relative pl-14 lg:w-1/2 lg:pl-0 ${
+                    left ? "lg:pr-12 lg:text-right" : "lg:ml-auto lg:pl-12"
                   }`}
                 >
                   {/* node — centred on the line */}
                   <span
                     className={`absolute top-5 z-10 grid h-10 w-10 place-items-center rounded-full border border-accent-cyan/40 bg-ink-900 text-accent-cyan shadow-glow left-0 ${
                       left
-                        ? "sm:left-auto sm:right-0 sm:translate-x-1/2"
-                        : "sm:-translate-x-1/2"
+                        ? "lg:left-auto lg:right-0 lg:translate-x-1/2"
+                        : "lg:-translate-x-1/2"
                     }`}
                   >
                     <Briefcase className="h-4 w-4" />
@@ -47,7 +48,7 @@ export function Experience() {
                   <div className="glass-card glass-card-hover p-6">
                     <div
                       className={`flex flex-wrap items-center gap-2 ${
-                        left ? "sm:justify-end" : ""
+                        left ? "lg:justify-end" : ""
                       }`}
                     >
                       {exp.current && (
@@ -66,7 +67,7 @@ export function Experience() {
                     </p>
                     <ul
                       className={`mt-4 space-y-2 text-sm text-slate-400 ${
-                        left ? "sm:text-right" : ""
+                        left ? "lg:text-right" : ""
                       }`}
                     >
                       {exp.points.map((pt) => (

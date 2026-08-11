@@ -4,10 +4,13 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
 } from "react";
+
+import { useActiveSection } from "@/components/ui/useActiveSection";
 
 export type LimelightItem = {
   id: string;
@@ -28,7 +31,8 @@ export function LimelightNav({
   items: LimelightItem[];
   className?: string;
 }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const hrefs = useMemo(() => items.map((i) => i.href), [items]);
+  const [activeIndex, setActiveIndex] = useActiveSection(hrefs);
   const [ready, setReady] = useState(false);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const limelightRef = useRef<HTMLDivElement>(null);
@@ -56,29 +60,6 @@ export function LimelightNav({
     return () => window.removeEventListener("resize", onResize);
   }, [moveLight]);
 
-  // Scroll-spy: highlight whichever section is centered in the viewport.
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const mid = window.scrollY + window.innerHeight / 2;
-          let current = 0;
-          items.forEach((item, i) => {
-            const el = document.querySelector(item.href) as HTMLElement | null;
-            if (el && el.offsetTop <= mid) current = i;
-          });
-          setActiveIndex(current);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [items]);
-
   return (
     <nav
       className={`relative flex items-center gap-1 rounded-full border border-white/10 bg-ink-900/50 px-1.5 py-1.5 backdrop-blur-xl ${className}`}
@@ -94,7 +75,7 @@ export function LimelightNav({
             }}
             onClick={() => setActiveIndex(index)}
             aria-current={isActive ? "page" : undefined}
-            className={`relative z-10 flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-300 lg:px-4 ${
+            className={`relative z-10 flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-300 xl:px-4 ${
               isActive
                 ? "text-accent-cyan"
                 : "text-slate-400 hover:text-slate-100"
@@ -103,7 +84,9 @@ export function LimelightNav({
             <span className="grid place-items-center [&>svg]:h-4 [&>svg]:w-4">
               {item.icon}
             </span>
-            <span className="hidden lg:inline">{item.label}</span>
+            {/* labels only from xl: at lg the six of them plus the logo and
+                socials no longer fit the header row */}
+            <span className="hidden xl:inline">{item.label}</span>
           </a>
         );
       })}

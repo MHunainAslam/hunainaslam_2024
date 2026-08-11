@@ -69,13 +69,14 @@ export function SkillOrbit() {
   return (
     <div className="flex flex-col items-center">
       <div
-        className="relative flex items-center justify-center"
+        className="relative h-[290px] w-full overflow-hidden sm:h-[410px] lg:h-[470px]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        style={{ height: 460, width: 460, maxWidth: "100%" }}
       >
-        {/* scale wrapper for small screens */}
-        <div className="relative h-[460px] w-[460px] scale-[0.62] sm:scale-90 lg:scale-100">
+        {/* The orbit is laid out at a fixed 460px, then scaled down to fit small
+            screens — absolutely centred so the untouched layout box can never
+            push the page wider than the viewport. */}
+        <div className="absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 scale-[0.6] sm:scale-[0.85] lg:scale-100">
           {/* static orbit rings */}
           <div className="absolute left-1/2 top-1/2 h-[350px] w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.07]" />
           <div className="absolute left-1/2 top-1/2 h-[350px] w-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/[0.05]" />
@@ -199,7 +200,7 @@ export function SkillOrbit() {
         </div>
       </div>
 
-      <p className="-mt-4 text-center text-sm text-slate-500">
+      <p className="mt-4 text-balance px-4 text-center text-sm text-slate-500">
         {activeGroup ? (
           <>
             Showing{" "}
@@ -207,10 +208,7 @@ export function SkillOrbit() {
             the hub to reset
           </>
         ) : (
-          <>
-            <br />
-            <br />
-            Tap any node to explore that part of the stack</>
+          "Tap any node to explore that part of the stack"
         )}
       </p>
     </div>

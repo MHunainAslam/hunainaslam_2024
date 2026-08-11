@@ -24,9 +24,9 @@ export function About() {
           title="Turning complex products into clean, fast interfaces"
         />
 
-        <div className="mt-14 grid items-start gap-10 lg:grid-cols-12">
+        <div className="mt-14 grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
           {/* Photo / avatar card */}
-          <Reveal className="mx-auto w-full max-w-sm xxl:col-span-3 col-span-4 xxl:max-w-none">
+          <Reveal className="mx-auto w-full max-w-xs sm:max-w-sm lg:col-span-4 lg:max-w-none">
             <div className="group relative">
               <div className="absolute -inset-1 rounded-3xl bg-accent-gradient opacity-30 blur-lg transition-opacity duration-500 group-hover:opacity-60" />
               <div className="glass-card relative overflow-hidden rounded-3xl p-1">
@@ -47,7 +47,7 @@ export function About() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="glass-card absolute -bottom-5 -right-4 flex items-center gap-2 px-4 py-2.5 shadow-card"
+                className="glass-card absolute -bottom-5 right-2 flex items-center gap-2 px-4 py-2.5 shadow-card sm:-right-4"
               >
                 <Zap className="h-4 w-4 text-accent-cyan" />
                 {/* <span className="text-sm font-semibold text-slate-100">
@@ -60,13 +60,13 @@ export function About() {
           {/* Text */}
           <div className="lg:col-start-5 lg:col-span-8">
             <Reveal delay={0.1}>
-              <p className="text-lg leading-relaxed text-slate-300">
+              <p className="text-base leading-relaxed text-slate-300 sm:text-lg">
                 {profile.summary}
               </p>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {highlights.map((h) => (
                   <li
                     key={h}
@@ -106,13 +106,14 @@ export function About() {
             </Reveal>
 
             <Reveal delay={0.4}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center">
                 <MotionButton
                   href="/Hunain%20Aslam%20Frontend%20Developer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   label="View Resume"
                   icon={Download}
+                  className="w-full max-w-sm sm:w-auto sm:max-w-none"
                 />
                 <span className="inline-flex items-center gap-1.5 text-sm text-slate-400">
                   <MapPin className="h-4 w-4 text-accent-cyan" />

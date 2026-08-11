@@ -135,8 +135,10 @@ export function Contact() {
     }
   });
 
+  // NOTE: text-base on mobile is deliberate — iOS Safari auto-zooms (and shifts
+  // the whole page sideways) when a focused input's font-size is under 16px.
   const field =
-    "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-colors focus:border-accent-cyan/60 focus:bg-white/[0.05]";
+    "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-base text-slate-100 placeholder:text-slate-500 outline-none transition-colors focus:border-accent-cyan/60 focus:bg-white/[0.05] sm:text-sm";
 
   return (
     <section id="contact" className="relative py-24 sm:py-32">
@@ -152,7 +154,10 @@ export function Contact() {
         {/* One stylish block: info panel + inquiry form */}
         <Reveal className="mt-14">
           <div className="glass-card relative overflow-hidden rounded-3xl p-1.5">
-            <div className="grid gap-px overflow-hidden rounded-[20px] lg:grid-cols-[0.85fr_1.15fr]">
+            {/* minmax(0,…) tracks are required: a bare `auto`/`fr` column sizes
+                to its max-content and would spill past the card, where the
+                overflow-hidden above then clips the inputs. */}
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[20px] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
               {/* Left — contact info panel */}
               <div className="relative flex flex-col gap-4 rounded-[18px] bg-gradient-to-br from-accent-cyan/[0.08] via-ink-900/40 to-accent-indigo/[0.08] p-6 sm:p-8">
                 <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent-cyan/10 blur-[80px]" />
@@ -167,7 +172,7 @@ export function Contact() {
                   </p>
                 </div>
 
-                <div className="relative mt-2 grid gap-3">
+                <div className="relative mt-2 grid grid-cols-1 gap-3">
                   <InfoItem
                     icon={Mail}
                     label="Email"
