@@ -169,10 +169,10 @@ export function Projects() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-slate-500">
+        {/* <p className="mt-8 text-center text-sm text-slate-500">
           Live links coming soon — reach out and I&apos;ll happily walk you
           through any of these.
-        </p>
+        </p> */}
       </div>
     </section>
   );
