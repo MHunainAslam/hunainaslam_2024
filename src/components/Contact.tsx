@@ -93,10 +93,18 @@ export function Contact() {
   } = useForm<FormValues>();
   const [sent, setSent] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit = handleSubmit(async (data) => {
     setFailed(false);
+    setErrorMessage(null);
     try {
+      if (!process.env.NEXT_PUBLIC_WEB3FORMS_KEY) {
+        throw new Error(
+          "Contact form isn't configured (missing Web3Forms key).",
+        );
+      }
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -121,8 +129,9 @@ export function Contact() {
         return;
       }
       throw new Error(result.message ?? "Submission failed");
-    } catch {
-      // Web3Forms unreachable — fall back to the user's mail client.
+    } catch (err) {
+      // Web3Forms unreachable or misconfigured — fall back to the user's mail client
+      // and surface the reason so it's not a silent failure.
       const subject = encodeURIComponent(`Portfolio enquiry from ${data.name}`);
       const body = encodeURIComponent(
         `${data.message}\n\n— ${data.name}\n${data.email}${
@@ -131,7 +140,13 @@ export function Contact() {
       );
       window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
       setFailed(true);
-      setTimeout(() => setFailed(false), 4000);
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong.",
+      );
+      setTimeout(() => {
+        setFailed(false);
+        setErrorMessage(null);
+      }, 6000);
     }
   });
 
@@ -309,10 +324,18 @@ export function Contact() {
                   icon={sent ? Check : Send}
                   className="w-full"
                 />
-                <p className="text-center text-xs text-slate-500">
-                  Sent straight to my inbox — or email me directly at{" "}
-                  <span className="text-accent-cyan">{profile.email}</span>.
-                </p>
+                {errorMessage ? (
+                  <p className="text-center text-xs text-red-400">
+                    {errorMessage} Opening your mail client instead — or email
+                    me directly at{" "}
+                    <span className="text-accent-cyan">{profile.email}</span>.
+                  </p>
+                ) : (
+                  <p className="text-center text-xs text-slate-500">
+                    Sent straight to my inbox — or email me directly at{" "}
+                    <span className="text-accent-cyan">{profile.email}</span>.
+                  </p>
+                )}
               </form>
             </div>
           </div>
